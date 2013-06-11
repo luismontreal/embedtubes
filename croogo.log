@@ -1,0 +1,76 @@
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP Warning:  file_put_contents(/home/luigi/www/croogo/app/tmp/logs/debug.log) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: Permission denied in /home/luigi/www/croogo/lib/Cake/Log/Engine/FileLog.php on line 87
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP Stack trace:
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   1. {main}() /home/luigi/www/croogo/app/webroot/index.php:0
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   2. Dispatcher->dispatch() /home/luigi/www/croogo/app/webroot/index.php:96
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   3. Dispatcher->_invoke() /home/luigi/www/croogo/lib/Cake/Routing/Dispatcher.php:162
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   4. Controller->render() /home/luigi/www/croogo/lib/Cake/Routing/Dispatcher.php:194
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   5. View->render() /home/luigi/www/croogo/lib/Cake/Controller/Controller.php:948
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   6. View->renderLayout() /home/luigi/www/croogo/lib/Cake/View/View.php:479
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   7. View->_render() /home/luigi/www/croogo/lib/Cake/View/View.php:535
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   8. View->_evaluate() /home/luigi/www/croogo/lib/Cake/View/View.php:909
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   9. include() /home/luigi/www/croogo/lib/Cake/View/View.php:947
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  10. LayoutHelper->sessionFlash() /home/luigi/www/croogo/app/Plugin/Install/View/Layouts/install.ctp:36
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  11. SessionHelper->read() /home/luigi/www/croogo/app/Plugin/Croogo/View/Helper/LayoutHelper.php:244
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  12. CakeSession::read() /home/luigi/www/croogo/lib/Cake/View/Helper/SessionHelper.php:45
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  13. CakeSession::start() /home/luigi/www/croogo/lib/Cake/Model/Datasource/CakeSession.php:358
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  14. CakeSession::_configureSession() /home/luigi/www/croogo/lib/Cake/Model/Datasource/CakeSession.php:189
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  15. ErrorHandler::handleError() /home/luigi/www/croogo/lib/Cake/Model/Datasource/CakeSession.php:467
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  16. CakeLog::write() /home/luigi/www/croogo/lib/Cake/Error/ErrorHandler.php:207
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  17. FileLog->write() /home/luigi/www/croogo/lib/Cake/Log/CakeLog.php:453
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  18. file_put_contents() /home/luigi/www/croogo/lib/Cake/Log/Engine/FileLog.php:87
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP Warning:  file_put_contents(/home/luigi/www/croogo/app/tmp/logs/debug.log) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: Permission denied in /home/luigi/www/croogo/lib/Cake/Log/Engine/FileLog.php on line 87
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP Stack trace:
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   1. {main}() /home/luigi/www/croogo/app/webroot/index.php:0
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   2. Dispatcher->dispatch() /home/luigi/www/croogo/app/webroot/index.php:96
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   3. Dispatcher->_invoke() /home/luigi/www/croogo/lib/Cake/Routing/Dispatcher.php:162
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   4. Controller->render() /home/luigi/www/croogo/lib/Cake/Routing/Dispatcher.php:194
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   5. View->render() /home/luigi/www/croogo/lib/Cake/Controller/Controller.php:948
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   6. View->renderLayout() /home/luigi/www/croogo/lib/Cake/View/View.php:479
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   7. View->_render() /home/luigi/www/croogo/lib/Cake/View/View.php:535
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   8. View->_evaluate() /home/luigi/www/croogo/lib/Cake/View/View.php:909
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   9. include() /home/luigi/www/croogo/lib/Cake/View/View.php:947
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  10. LayoutHelper->sessionFlash() /home/luigi/www/croogo/app/Plugin/Install/View/Layouts/install.ctp:36
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  11. SessionHelper->read() /home/luigi/www/croogo/app/Plugin/Croogo/View/Helper/LayoutHelper.php:244
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  12. CakeSession::read() /home/luigi/www/croogo/lib/Cake/View/Helper/SessionHelper.php:45
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  13. CakeSession::start() /home/luigi/www/croogo/lib/Cake/Model/Datasource/CakeSession.php:358
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  14. CakeSession::_configureSession() /home/luigi/www/croogo/lib/Cake/Model/Datasource/CakeSession.php:189
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  15. ErrorHandler::handleError() /home/luigi/www/croogo/lib/Cake/Model/Datasource/CakeSession.php:473
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  16. CakeLog::write() /home/luigi/www/croogo/lib/Cake/Error/ErrorHandler.php:207
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  17. FileLog->write() /home/luigi/www/croogo/lib/Cake/Log/CakeLog.php:453
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  18. file_put_contents() /home/luigi/www/croogo/lib/Cake/Log/Engine/FileLog.php:87
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP Warning:  file_put_contents(/home/luigi/www/croogo/app/tmp/logs/debug.log) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: Permission denied in /home/luigi/www/croogo/lib/Cake/Log/Engine/FileLog.php on line 87
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP Stack trace:
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   1. {main}() /home/luigi/www/croogo/app/webroot/index.php:0
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   2. Dispatcher->dispatch() /home/luigi/www/croogo/app/webroot/index.php:96
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   3. Dispatcher->_invoke() /home/luigi/www/croogo/lib/Cake/Routing/Dispatcher.php:162
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   4. Controller->render() /home/luigi/www/croogo/lib/Cake/Routing/Dispatcher.php:194
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   5. View->render() /home/luigi/www/croogo/lib/Cake/Controller/Controller.php:948
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   6. View->renderLayout() /home/luigi/www/croogo/lib/Cake/View/View.php:479
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   7. View->_render() /home/luigi/www/croogo/lib/Cake/View/View.php:535
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   8. View->_evaluate() /home/luigi/www/croogo/lib/Cake/View/View.php:909
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP   9. include() /home/luigi/www/croogo/lib/Cake/View/View.php:947
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  10. LayoutHelper->sessionFlash() /home/luigi/www/croogo/app/Plugin/Install/View/Layouts/install.ctp:36
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  11. SessionHelper->read() /home/luigi/www/croogo/app/Plugin/Croogo/View/Helper/LayoutHelper.php:244
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  12. CakeSession::read() /home/luigi/www/croogo/lib/Cake/View/Helper/SessionHelper.php:45
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  13. CakeSession::start() /home/luigi/www/croogo/lib/Cake/Model/Datasource/CakeSession.php:358
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  14. CakeSession::_configureSession() /home/luigi/www/croogo/lib/Cake/Model/Datasource/CakeSession.php:189
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  15. ErrorHandler::handleError() /home/luigi/www/croogo/lib/Cake/Model/Datasource/CakeSession.php:506
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  16. CakeLog::write() /home/luigi/www/croogo/lib/Cake/Error/ErrorHandler.php:207
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  17. FileLog->write() /home/luigi/www/croogo/lib/Cake/Log/CakeLog.php:453
+[Tue Jun 11 12:56:54 2013] [error] [client 127.0.0.1] PHP  18. file_put_contents() /home/luigi/www/croogo/lib/Cake/Log/Engine/FileLog.php:87
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP Warning:  include(/home/luigi/www/croogo/app/Config/core.php): failed to open stream: Permission denied in /home/luigi/www/croogo/lib/Cake/Core/Configure.php on line 77
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP Stack trace:
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP   1. {main}() /home/luigi/www/croogo/app/webroot/index.php:0
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP   2. include() /home/luigi/www/croogo/app/webroot/index.php:77
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP   3. Configure::bootstrap() /home/luigi/www/croogo/lib/Cake/bootstrap.php:170
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP Warning:  include(): Failed opening '/home/luigi/www/croogo/app/Config/core.php' for inclusion (include_path='/home/luigi/www/croogo/lib:.:/usr/share/php:/usr/share/pear') in /home/luigi/www/croogo/lib/Cake/Core/Configure.php on line 77
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP Stack trace:
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP   1. {main}() /home/luigi/www/croogo/app/webroot/index.php:0
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP   2. include() /home/luigi/www/croogo/app/webroot/index.php:77
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP   3. Configure::bootstrap() /home/luigi/www/croogo/lib/Cake/bootstrap.php:170
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP Fatal error:  Can't find application core file. Please create /home/luigi/www/croogo/app/Config/core.php, and make sure it is readable by PHP. in /home/luigi/www/croogo/lib/Cake/Core/Configure.php on line 78
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP Stack trace:
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP   1. {main}() /home/luigi/www/croogo/app/webroot/index.php:0
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP   2. include() /home/luigi/www/croogo/app/webroot/index.php:77
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP   3. Configure::bootstrap() /home/luigi/www/croogo/lib/Cake/bootstrap.php:170
+[Tue Jun 11 13:14:08 2013] [error] [client 127.0.0.1] PHP   4. trigger_error() /home/luigi/www/croogo/lib/Cake/Core/Configure.php:78
