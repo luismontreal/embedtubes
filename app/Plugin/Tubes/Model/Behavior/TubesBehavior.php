@@ -21,18 +21,16 @@ class TubesBehavior extends ModelBehavior {
  * @param array $config
  * @return void
  */
-	public function setup(Model $model, $config = array()) {
-		
-		if (is_string($config)) {
-			$config = array($config);
+	public function setup(Model $model, $config = array()) {		
+		if (!isset($this->settings[$model->alias])) {
+			$this->settings[$model->alias] = (array)$config;
 		}
-		$this->settings[$model->alias] = $config;
-		
+						
 		$model->hasOne['Video'] = array(
-	    'className' => 'Tubes.Video',
-	    'foreignKey' => 'node_id',
-	    'conditions' => array(),
-	    'dependent' => true
+			'className' => 'Tubes.Video',
+			'foreignKey' => 'node_id',
+			'conditions' => array(),
+			'dependent' => true
 	  );
 	}
 

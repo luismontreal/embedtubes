@@ -1,6 +1,6 @@
 <?php
 
-App::uses('TubesAppModel', 'Video.Model');
+App::uses('TubesAppModel', 'Tubes.Model');
 
 class Video extends TubesAppModel {
 

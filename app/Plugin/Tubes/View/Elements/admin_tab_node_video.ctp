@@ -1,3 +1,3 @@
 <?php
-	echo $this->Form->input('url');
+	echo $this->Form->input('Video.url');
 ?>
