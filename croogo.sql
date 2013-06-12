@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dumps
 -- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
