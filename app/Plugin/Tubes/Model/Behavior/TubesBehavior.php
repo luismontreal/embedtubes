@@ -29,7 +29,7 @@ class TubesBehavior extends ModelBehavior {
 		$model->hasOne['Video'] = array(
 			'className' => 'Tubes.Video',
 			'foreignKey' => 'node_id',
-			'conditions' => array('type' => 'video'),
+			'conditions' => array(),
 			'dependent' => true
 	  );
 	}
