@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.8.1deb1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 11, 2013 at 10:30 PM
--- Server version: 5.5.31-0ubuntu0.13.04.1
--- PHP Version: 5.4.9-4ubuntu2.1
+-- Generation Time: Jun 12, 2013 at 03:53 PM
+-- Server version: 5.5.31
+-- PHP Version: 5.4.15-1~precise+1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `acos` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=225 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=229 ;
 
 --
 -- Dumping data for table `acos`
@@ -240,8 +240,8 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (204, 203, NULL, NULL, 'admin_index', 388, 389),
 (205, 203, NULL, NULL, 'admin_edit', 390, 391),
 (206, 203, NULL, NULL, 'admin_delete', 392, 393),
-(223, 1, NULL, NULL, 'Videos', 396, 399),
-(224, 223, NULL, NULL, 'index', 397, 398);
+(227, 1, NULL, NULL, 'Videos', 396, 399),
+(228, 227, NULL, NULL, 'index', 397, 398);
 
 -- --------------------------------------------------------
 
@@ -286,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   `_update` varchar(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `_delete` varchar(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `aros_acos`
@@ -311,7 +311,7 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 (16, 3, 191, '1', '1', '1', '1'),
 (17, 2, 192, '1', '1', '1', '1'),
 (18, 2, 193, '1', '1', '1', '1'),
-(32, 3, 224, '1', '1', '1', '1');
+(34, 3, 228, '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -624,7 +624,7 @@ CREATE TABLE IF NOT EXISTS `nodes` (
   `updated` datetime NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `nodes`
@@ -632,9 +632,7 @@ CREATE TABLE IF NOT EXISTS `nodes` (
 
 INSERT INTO `nodes` (`id`, `parent_id`, `user_id`, `title`, `slug`, `body`, `excerpt`, `status`, `mime_type`, `comment_status`, `comment_count`, `promote`, `path`, `terms`, `sticky`, `lft`, `rght`, `visibility_roles`, `type`, `updated`, `created`) VALUES
 (1, NULL, 1, 'Hello World', 'hello-world', '<p>Welcome to Croogo. This is your first post. You can edit or delete it from the admin panel.</p>', '', 1, '', 2, 1, 1, '/blog/hello-world', '{"1":"uncategorized"}', 0, 1, 2, '', 'blog', '2009-12-25 11:00:00', '2009-12-25 11:00:00'),
-(2, NULL, 1, 'About', 'about', '<p>This is an example of a Croogo page, you could edit this to put information about yourself or your site.</p>\r\n', '', 1, '', 0, 0, 0, '/about', '', 0, 1, 2, '', 'page', '2013-06-11 22:11:37', '2009-12-25 22:00:00'),
-(16, NULL, 1, 'bl', 'bl', '<p>ssss</p>\r\n', 'ssss', 0, NULL, 2, 0, 0, '/blog/bl', '', 0, 7, 8, '', 'blog', '2013-06-11 22:07:35', '2013-06-11 22:07:31'),
-(18, NULL, 1, 'video test', 'video-test', '<p>dsfsdf</p>\r\n', 'asdfasdf', 0, NULL, 2, 0, 0, '/nodes/nodes/view/type:video/slug:video-test', NULL, 0, 9, 10, '', 'video', '2013-06-11 22:29:59', '2013-06-11 22:29:24');
+(2, NULL, 1, 'About', 'about', '<p>This is an example of a Croogo page, you could edit this to put information about yourself or your site.</p>\r\n', '', 1, '', 0, 0, 0, '/about', '', 0, 1, 2, '', 'page', '2013-06-11 22:11:37', '2009-12-25 22:00:00');
 
 -- --------------------------------------------------------
 
@@ -815,7 +813,7 @@ INSERT INTO `settings` (`id`, `key`, `value`, `title`, `description`, `input_typ
 (27, 'Reading.date_time_format', 'D, M d Y H:i:s', '', '', '', 1, 21, ''),
 (28, 'Comment.date_time_format', 'M d, Y', '', '', '', 1, 22, ''),
 (29, 'Site.timezone', '0', '', 'zero (0) for GMT', '', 1, 4, ''),
-(32, 'Hook.bootstraps', 'Settings,Comments,Contacts,Nodes,Meta,Menus,Users,Blocks,Taxonomy,FileManager,Wysiwyg,Ckeditor,Translate,Tubes', '', '', '', 0, 23, ''),
+(32, 'Hook.bootstraps', 'Settings,Comments,Contacts,Nodes,Meta,Menus,Users,Blocks,Taxonomy,FileManager,Wysiwyg,Ckeditor,Tubes', '', '', '', 0, 23, ''),
 (33, 'Comment.email_notification', '1', 'Enable email notification', '', 'checkbox', 1, 24, ''),
 (34, 'Access Control.multiRole', '0', 'Enable Multiple Roles', '', 'checkbox', 1, 25, ''),
 (35, 'Access Control.rowLevel', '0', 'Row Level Access Control', '', 'checkbox', 1, 26, ''),
@@ -823,6 +821,39 @@ INSERT INTO `settings` (`id`, `key`, `value`, `title`, `description`, `input_typ
 (37, 'Access Control.models', '', 'Models with Row Level Acl', 'Select models to activate Row Level Access Control on', 'multiple', 1, 26, 'multiple=checkbox\noptions={"Nodes.Node": "Node", "Blocks.Block": "Block", "Menus.Menu": "Menu", "Menus.Link": "Link"}'),
 (38, 'Croogo.installed', '1', '', '', '', 0, 28, ''),
 (39, 'Croogo.version', '1.5.2', '', '', '', 0, 29, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sites`
+--
+
+CREATE TABLE IF NOT EXISTS `sites` (
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `feed_url` varchar(255) NOT NULL,
+  `feed_filename` varchar(255) NOT NULL,
+  `deleted_feed_url` varchar(255) NOT NULL,
+  `deleted_feed_filename` varchar(255) NOT NULL,
+  `last_updated_videoid` int(20) NOT NULL DEFAULT '0',
+  `mrss_parts` int(5) NOT NULL DEFAULT '0',
+  `last_mrss_part_parsed` int(5) NOT NULL DEFAULT '0',
+  `max_video_insert` int(5) NOT NULL DEFAULT '0',
+  `max_video_update` int(5) NOT NULL DEFAULT '0',
+  `days_from` int(5) NOT NULL DEFAULT '14',
+  `days_to` int(5) NOT NULL DEFAULT '7',
+  `next_deleted_to_parse` int(11) NOT NULL DEFAULT '0',
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `sites`
+--
+
+INSERT INTO `sites` (`id`, `name`, `feed_url`, `feed_filename`, `deleted_feed_url`, `deleted_feed_filename`, `last_updated_videoid`, `mrss_parts`, `last_mrss_part_parsed`, `max_video_insert`, `max_video_update`, `days_from`, `days_to`, `next_deleted_to_parse`, `created`) VALUES
+(1, 'pornhubdd', 'http://www.pornhub.com/', 'mrss_full.xml', 'http://www.pornhub.com/files/', 'deleted.xml', 0, 0, 0, 0, 0, 17, 7, 0, '2002-06-29 05:00:00');
 
 -- --------------------------------------------------------
 
@@ -974,7 +1005,7 @@ INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `name`, `email`, `
 CREATE TABLE IF NOT EXISTS `videos` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `externalId` varchar(255) NOT NULL,
-  `origin_site` varchar(255) NOT NULL,
+  `site_id` int(20) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'active',
   `url` varchar(255) CHARACTER SET utf8 NOT NULL,
   `duration` int(11) NOT NULL,
@@ -995,14 +1026,7 @@ CREATE TABLE IF NOT EXISTS `videos` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `url` (`url`),
   UNIQUE KEY `external_id` (`externalId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
-
---
--- Dumping data for table `videos`
---
-
-INSERT INTO `videos` (`id`, `externalId`, `origin_site`, `status`, `url`, `duration`, `votes`, `local_votes`, `views`, `local_views`, `rating`, `local_rating`, `pub_date`, `thumb_path`, `thumb_width`, `thumb_height`, `mobile_compatible`, `path`, `filename`, `node_id`) VALUES
-(16, 'fsdfseeee', 'sdfsdfeeeeeee', 'sdfsdf', 'sdffsd', 234, 23, 234, 23423, 2342, 0.9, 0.9, 'werw', 'werw', 213, 21, 1, '12312', 'ewrwe', 18);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1016,16 +1040,7 @@ CREATE TABLE IF NOT EXISTS `videos_c` (
   `node_id` int(20) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `url` (`url`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
-
---
--- Dumping data for table `videos_c`
---
-
-INSERT INTO `videos_c` (`id`, `url`, `node_id`) VALUES
-(15, 'dsf', 14),
-(21, 'fgdgd', 15),
-(23, 'fhjhjhgh', 17);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 

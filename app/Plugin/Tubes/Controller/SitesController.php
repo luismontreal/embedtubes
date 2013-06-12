@@ -62,13 +62,13 @@ class SitesController extends TubesAppController {
  */
 	public function admin_edit($id = null) {
 		$this->set('title_for_layout', __d('croogo', 'Edit Site'));
-
+		
 		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(__d('croogo', 'Invalid Site'), 'default', array('class' => 'error'));
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->request->data)) {
-			if ($this->Comment->save($this->request->data)) {
+			if ($this->Site->save($this->request->data)) {
 				$this->Session->setFlash(__d('croogo', 'The Site has been saved'), 'default', array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -77,7 +77,38 @@ class SitesController extends TubesAppController {
 		}
 		if (empty($this->request->data)) {
 			$this->request->data = $this->Site->read(null, $id);
-		}		
+		}				
+		//hardcode admin_edit so it takes admin_form check CroogoAppCrontroller.php
+		$this->render('admin_edit');
+	}
+	
+/**
+ * Admin add
+ *
+ * @param integer $id
+ * @return void
+ * @access public
+ */
+	public function admin_add($id = null) {
+		$this->set('title_for_layout', __d('croogo', 'Edit Site'));
+		
+		if (!$id && empty($this->request->data)) {
+			$this->Session->setFlash(__d('croogo', 'Invalid Site'), 'default', array('class' => 'error'));
+			$this->redirect(array('action' => 'index'));
+		}
+		if (!empty($this->request->data)) {
+			if ($this->Site->save($this->request->data)) {
+				$this->Session->setFlash(__d('croogo', 'The Site has been saved'), 'default', array('class' => 'success'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__d('croogo', 'The Site could not be saved. Please, try again.'), 'default', array('class' => 'error'));
+			}
+		}
+		if (empty($this->request->data)) {
+			$this->request->data = $this->Site->read(null, $id);
+		}				
+		//hardcode admin_edit so it takes admin_form check CroogoAppCrontroller.php
+		$this->render('admin_edit');
 	}
 
 /**
@@ -89,11 +120,11 @@ class SitesController extends TubesAppController {
  */
 	public function admin_delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__d('croogo', 'Invalid id for Comment'), 'default', array('class' => 'error'));
+			$this->Session->setFlash(__d('croogo', 'Invalid id for Site'), 'default', array('class' => 'error'));
 			$this->redirect(array('action' => 'index'));
 		}
-		if ($this->Comment->delete($id)) {
-			$this->Session->setFlash(__d('croogo', 'Comment deleted'), 'default', array('class' => 'success'));
+		if ($this->Site->delete($id)) {
+			$this->Session->setFlash(__d('croogo', 'Site deleted'), 'default', array('class' => 'success'));
 			$this->redirect(array('action' => 'index'));
 		}
 	}
