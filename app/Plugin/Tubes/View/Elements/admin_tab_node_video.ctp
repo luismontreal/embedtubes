@@ -1,7 +1,10 @@
 <?php
+		/*echo $this->Form->input('Video.id');
+		echo $this->Form->input('Video.url');
+		echo $this->Form->input('Video.node_id');*/
         echo $this->Form->input('Video.id');
         echo $this->Form->input('Video.externalId');
-        echo $this->Form->input('Video.origin_site');
+        echo $this->Form->input('Video.site_id');
         echo $this->Form->input('Video.status');
         echo $this->Form->input('Video.url');
         echo $this->Form->input('Video.duration');
@@ -18,5 +21,5 @@
         echo $this->Form->input('Video.mobile_compatible');
         echo $this->Form->input('Video.path');
         echo $this->Form->input('Video.filename');
-        //echo $this->Form->input('Video.node_id');
+        echo $this->Form->input('Video.node_id');
  ?>

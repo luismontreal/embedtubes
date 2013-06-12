@@ -2,7 +2,7 @@
 
 App::uses('TubesAppModel', 'Tubes.Model');
 
-class Video extends TubesAppModel {
+class Site extends TubesAppModel {
 
 /**
  * Validation
@@ -32,16 +32,9 @@ class Video extends TubesAppModel {
  * @var array
  * @access public
  */
-	public $belongsTo = array(
-		'Node' => array(
-			'className' => 'Node',
-			'foreignKey' => 'node_id',
-			'conditions' => array('Node.type' => 'video'),
-			'fields' => '',
-			'order' => '',
-		),
-		'Site' => array(
-			'className' => 'Site',
+	public $hasMany = array(
+		'Video' => array(
+			'className' => 'Tubes.Video',
 			'foreignKey' => 'site_id',
 			'conditions' => array(),
 			'fields' => '',

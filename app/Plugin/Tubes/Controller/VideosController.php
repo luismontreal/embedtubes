@@ -1,6 +1,6 @@
 <?php
 
-App::uses('TubesAppController', 'Videos.Controller');
+App::uses('TubesAppController', 'Tubes.Controller');
 
 class VideosController extends TubesAppController {
   
