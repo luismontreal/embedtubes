@@ -1,12 +1,19 @@
 <?php
 
+$isEditing = $this->action == 'admin_edit';
+if($isEditing) {
+	$crumbLabel = 'Edit';
+} else {
+	$crumbLabel = 'Add';
+}
+
 $this->extend('/Common/admin_edit');
 
 $this->Html
 	->addCrumb('', '/admin', array('icon' => 'home'))
 	->addCrumb(__d('croogo', 'Settings'), array('plugin' => 'settings', 'controller' => 'settings', 'action' => 'index'))
 	->addCrumb(__d('croogo', 'External Sites'), array('plugin' => 'tubes', 'controller' => 'sites', 'action' => 'index'))
-	->addCrumb($this->request->data['Site']['id'], $this->here);
+	->addCrumb($crumbLabel, $this->here);
 
 echo $this->Form->create('Site');
 
@@ -24,11 +31,11 @@ echo $this->Form->create('Site');
 		<div class="tab-content">
 
 			<div id="site-main" class="tab-pane">
-			<?php
-				echo $this->Form->input('id');
+			<?php				
+				echo $this->Form->input('id');													
 				$this->Form->inputDefaults(array(
-					'class' => 'span10',
-				));
+						'class' => 'span10',
+					));				
 				echo $this->Form->input('name', array(
 					'label' => __d('croogo', 'Name'),
 				));
@@ -44,16 +51,6 @@ echo $this->Form->create('Site');
 				echo $this->Form->input('deleted_feed_filename', array(
 					'label' => __d('croogo', 'Deleted Feed Filename'),
 				));				
-				echo $this->Form->input('last_updated_videoid', array(
-					'label' => __d('croogo', 'Last Updated Video Id'),
-				));
-				
-				echo $this->Form->input('mrss_parts', array(
-					'label' => __d('croogo', 'Mrss Parts'),
-				));				
-				echo $this->Form->input('last_mrss_part_parsed', array(
-					'label' => __d('croogo', 'Last Mrss Part Parsed'),
-				));							
 				echo $this->Form->input('max_video_insert', array(
 					'label' => __d('croogo', 'Max Videos to Insert'),
 				));
@@ -66,12 +63,32 @@ echo $this->Form->create('Site');
 				echo $this->Form->input('days_to', array(
 					'label' => __d('croogo', 'Days to Parse To'),
 				));				
-				echo $this->Form->input('next_deleted_to_parse', array(
-					'label' => __d('croogo', 'Next Deleted Part To Parse'),
-				));
+				
+				if($isEditing) {
+					echo $this->Form->input('last_updated_videoid', array(
+						'label' => __d('croogo', 'Last Updated Video Id'),
+						'readonly' => 'readonly',					
+					));				
+					echo $this->Form->input('mrss_parts', array(
+						'label' => __d('croogo', 'Mrss Parts'),
+						'readonly' => 'readonly',
+
+					));				
+					echo $this->Form->input('last_mrss_part_parsed', array(
+						'label' => __d('croogo', 'Last Mrss Part Parsed'),
+						'readonly' => 'readonly',
+
+					));							
+					echo $this->Form->input('next_deleted_to_parse', array(
+						'label' => __d('croogo', 'Next Deleted Part To Parse'),
+						'readonly' => 'readonly',
+
+					));
+				}
+				
 				echo $this->Form->input('created', array(
 					'label' => __d('croogo', 'Created'),
-				));	
+				));					
 			?>
 			</div>
 

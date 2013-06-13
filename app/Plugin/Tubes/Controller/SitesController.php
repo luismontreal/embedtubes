@@ -60,7 +60,7 @@ class SitesController extends TubesAppController {
  * @return void
  * @access public
  */
-	public function admin_edit($id = null) {
+	public function admin_edit($id = null) {		
 		$this->set('title_for_layout', __d('croogo', 'Edit Site'));
 		
 		if (!$id && empty($this->request->data)) {
@@ -68,7 +68,15 @@ class SitesController extends TubesAppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->request->data)) {
-			if ($this->Site->save($this->request->data)) {
+			//saving some fields only
+			$this->Site->read(null, $id);
+			unset($this->request->data['Site']['last_updated_videoid']);
+			unset($this->request->data['Site']['mrss_parts']);
+			unset($this->request->data['Site']['last_mrss_part_parsed']);
+			unset($this->request->data['Site']['next_deleted_to_parse']);
+			$this->Site->set($this->request->data);
+			
+			if ($this->Site->save()) {
 				$this->Session->setFlash(__d('croogo', 'The Site has been saved'), 'default', array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -79,7 +87,7 @@ class SitesController extends TubesAppController {
 			$this->request->data = $this->Site->read(null, $id);
 		}				
 		//hardcode admin_edit so it takes admin_form check CroogoAppCrontroller.php
-		$this->render('admin_edit');
+		$this->render('admin_form');
 	}
 	
 /**
@@ -89,26 +97,19 @@ class SitesController extends TubesAppController {
  * @return void
  * @access public
  */
-	public function admin_add($id = null) {
-		$this->set('title_for_layout', __d('croogo', 'Edit Site'));
-		
-		if (!$id && empty($this->request->data)) {
-			$this->Session->setFlash(__d('croogo', 'Invalid Site'), 'default', array('class' => 'error'));
-			$this->redirect(array('action' => 'index'));
-		}
-		if (!empty($this->request->data)) {
-			if ($this->Site->save($this->request->data)) {
-				$this->Session->setFlash(__d('croogo', 'The Site has been saved'), 'default', array('class' => 'success'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__d('croogo', 'The Site could not be saved. Please, try again.'), 'default', array('class' => 'error'));
-			}
-		}
-		if (empty($this->request->data)) {
-			$this->request->data = $this->Site->read(null, $id);
-		}				
+	public function admin_add($id = null) {		
+		 if ($this->request->is('post')) {
+            $this->Site->create();
+             
+            if ($this->Site->save($this->request->data)) {
+                $this->Session->setFlash('Site has been saved.');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash('Unable to add site.');
+            }
+        }
 		//hardcode admin_edit so it takes admin_form check CroogoAppCrontroller.php
-		$this->render('admin_edit');
+		$this->render('admin_form');
 	}
 
 /**

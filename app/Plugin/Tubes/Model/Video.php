@@ -41,7 +41,7 @@ class Video extends TubesAppModel {
 			'order' => '',
 		),
 		'Site' => array(
-			'className' => 'Site',
+			'className' => 'Tubes.Site',
 			'foreignKey' => 'site_id',
 			'conditions' => array(),
 			'fields' => '',

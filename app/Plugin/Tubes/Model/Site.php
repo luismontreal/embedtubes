@@ -9,22 +9,32 @@ class Site extends TubesAppModel {
  *
  * @var array
  */
-  /*var $validate = array(
-    'event_date' => array(
-        'notEmpty' => array(
-        'rule' => 'notEmpty',
-        'message' => 'This field cannot be left blank.',
-        'last' => true,
-      ),
-    ),
-    'event_time' => array(
-        'notEmpty' => array(
-        'rule' => 'notEmpty',
-        'message' => 'This field cannot be left blank.',
-        'last' => true,
-      ),
-    ),
-	);*/
+	var $validate = array(
+		'last_updated_videoid' => array(
+			'numeric' => array(
+				'rule'     => 'numeric',
+				'required' => false,
+			),			
+		),    
+		'mrss_parts' => array(
+			'numeric' => array(
+				'rule'     => 'numeric',
+				'required' => false,
+			),		
+		),
+		'last_mrss_part_parsed' => array(
+			'numeric' => array(
+				'rule'     => 'numeric',
+				'required' => false,
+			),		
+		),
+		'next_deleted_to_parse' => array(
+			'numeric' => array(
+				'rule'     => 'numeric',
+				'required' => false,
+			),		
+		),
+	);
 		
 /**
  * Model associations: belongsTo
