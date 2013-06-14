@@ -32,6 +32,7 @@ class TubesBehavior extends ModelBehavior {
 			'conditions' => array(),
 			'dependent' => true
 	  );
+		$model->recursive = 2;
 	}
 
 }
