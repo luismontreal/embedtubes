@@ -1,9 +1,14 @@
 <?php
-	
+/**
+ * Routes
+ *
+ * example_routes.php will be loaded in main app/config/routes.php file.
+ */
+Croogo::hookRoutes('Tubes');	
 /**
  * Behavior
  */
- Croogo::hookBehavior('Node', 'Tubes.Tubes', array());
+Croogo::hookBehavior('Node', 'Tubes.Tubes', array());
  
  /**
  * Component
