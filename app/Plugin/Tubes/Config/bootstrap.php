@@ -3,7 +3,14 @@
 /**
  * Behavior
  */
- 	Croogo::hookBehavior('Node', 'Tubes.Tubes', array());
+ Croogo::hookBehavior('Node', 'Tubes.Tubes', array());
+ 
+ /**
+ * Component
+ *
+ */
+Croogo::hookComponent('Nodes', 'Tubes.Tubes');
+
   
 /**
  * Admin tab

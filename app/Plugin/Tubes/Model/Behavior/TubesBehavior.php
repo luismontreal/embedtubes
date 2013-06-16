@@ -22,17 +22,16 @@ class TubesBehavior extends ModelBehavior {
  * @return void
  */
 	public function setup(Model $model, $config = array()) {		
-		if (!isset($this->settings[$model->alias])) {
-			$this->settings[$model->alias] = (array)$config;
-		}
+            if (!isset($this->settings[$model->alias])) {
+		$this->settings[$model->alias] = (array)$config;
+            }
 						
-		$model->hasOne['Video'] = array(
-			'className' => 'Tubes.Video',
-			'foreignKey' => 'node_id',
-			'conditions' => array(),
-			'dependent' => true
-	  );
-		$model->recursive = 2;
+            $model->hasOne['Video'] = array(
+		'className' => 'Tubes.Video',
+		'foreignKey' => 'node_id',
+		'conditions' => array(),
+		'dependent' => true
+            );
+           
 	}
-
 }
