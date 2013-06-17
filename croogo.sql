@@ -1,10 +1,10 @@
--- phpMyAdmin SQL Dumps
--- version 3.4.10.1deb1
+-- phpMyAdmin SQL Dump
+-- version 3.5.8.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 12, 2013 at 03:53 PM
--- Server version: 5.5.31
+-- Generation Time: Jun 17, 2013 at 05:31 PM
+-- Server version: 5.5.31-0ubuntu0.13.04.1
 -- PHP Version: 5.4.15-1~precise+1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -497,7 +497,7 @@ CREATE TABLE IF NOT EXISTS `links` (
   `updated` datetime NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `links`
@@ -624,7 +624,7 @@ CREATE TABLE IF NOT EXISTS `nodes` (
   `updated` datetime NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `nodes`
@@ -632,7 +632,13 @@ CREATE TABLE IF NOT EXISTS `nodes` (
 
 INSERT INTO `nodes` (`id`, `parent_id`, `user_id`, `title`, `slug`, `body`, `excerpt`, `status`, `mime_type`, `comment_status`, `comment_count`, `promote`, `path`, `terms`, `sticky`, `lft`, `rght`, `visibility_roles`, `type`, `updated`, `created`) VALUES
 (1, NULL, 1, 'Hello World', 'hello-world', '<p>Welcome to Croogo. This is your first post. You can edit or delete it from the admin panel.</p>', '', 1, '', 2, 1, 1, '/blog/hello-world', '{"1":"uncategorized"}', 0, 1, 2, '', 'blog', '2009-12-25 11:00:00', '2009-12-25 11:00:00'),
-(2, NULL, 1, 'About', 'about', '<p>This is an example of a Croogo page, you could edit this to put information about yourself or your site.</p>\r\n', '', 1, '', 0, 0, 0, '/about', '', 0, 1, 2, '', 'page', '2013-06-11 22:11:37', '2009-12-25 22:00:00');
+(2, NULL, 1, 'About', 'about', '<p>This is an example of a Croogo page, you could edit this to put information about yourself or your site.</p>\r\n', '', 1, '', 0, 0, 0, '/about', '', 0, 1, 2, '', 'page', '2013-06-11 22:11:37', '2009-12-25 22:00:00'),
+(3, NULL, 1, 'video test', 'dfgdfff', '<p>sadsfdadd</p>\r\n', 'sadsafd', 1, NULL, 2, 0, 0, '/nodes/nodes/view/type:video/slug:dfgdfff', NULL, 0, 3, 4, '', 'video', '2013-06-13 17:14:17', '2013-06-13 16:27:28'),
+(4, NULL, 1, 'pagina 2', 'pagina-2', '<p>sadsad</p>\r\n', 'sdasd', 0, NULL, 1, 0, 0, '/page/pagina-2', NULL, 0, 5, 6, '', 'page', '2013-06-13 16:59:13', '2013-06-13 16:56:43'),
+(5, NULL, 1, 'sfdgsfd', 'sfdgsfd', '<p>gsfdgsdfgs</p>\r\n', 'sdfgsdfgsd', 0, NULL, 2, 0, 0, '/blog/sfdgsfd', '', 0, 7, 8, '', 'blog', '2013-06-13 17:00:08', '2013-06-13 17:00:08'),
+(6, NULL, 1, 'fdgsdgsdsgsdg', 'fdgsdgsdsgsdg', '<p>gsfdgsdgsd</p>\r\n', 'sfdgfsdgsd', 0, NULL, 2, 0, 0, '/blog/fdgsdgsdsgsdg', '', 0, 9, 10, '', 'blog', '2013-06-14 10:26:39', '2013-06-14 10:26:39'),
+(7, NULL, 1, 'testo', 'kjkjsabd kj', '<p>GSFDGSDF</p>\r\n', 'SFGDSGFDS', 0, NULL, 2, 0, 0, '/nodes/nodes/view/type:video/slug:kjkjsabd%20kj', NULL, 0, 11, 12, '', 'video', '2013-06-14 10:57:23', '2013-06-14 10:57:23'),
+(8, NULL, 1, 'Luigi', 'luis', '<p>fgdsgsfd</p>\r\n', 'sfdgsfd', 1, NULL, 2, 0, 0, '/video/luis', NULL, 0, 13, 14, '', 'video', '2013-06-17 09:54:15', '2013-06-14 15:35:32');
 
 -- --------------------------------------------------------
 
@@ -791,9 +797,9 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `key`, `value`, `title`, `description`, `input_type`, `editable`, `weight`, `params`) VALUES
-(6, 'Site.title', 'Croogo', '', '', '', 1, 1, ''),
-(7, 'Site.tagline', 'A CakePHP powered Content Management System.', '', '', 'textarea', 1, 2, ''),
-(8, 'Site.email', 'you@your-site.com', '', '', '', 1, 3, ''),
+(6, 'Site.title', 'EmbedTubes', '', '', '', 1, 1, ''),
+(7, 'Site.tagline', 'A Site to test this CMS.', '', '', 'textarea', 1, 2, ''),
+(8, 'Site.email', 'luismontreal@gmail.com', '', '', '', 1, 3, ''),
 (9, 'Site.status', '1', '', '', 'checkbox', 1, 6, ''),
 (12, 'Meta.robots', 'index, follow', '', '', '', 1, 6, ''),
 (13, 'Meta.keywords', 'croogo, Croogo', '', '', 'textarea', 1, 7, ''),
@@ -803,7 +809,7 @@ INSERT INTO `settings` (`id`, `key`, `value`, `title`, `description`, `input_typ
 (17, 'Service.recaptcha_public_key', 'your-public-key', '', '', '', 1, 12, ''),
 (18, 'Service.recaptcha_private_key', 'your-private-key', '', '', '', 1, 13, ''),
 (19, 'Service.akismet_url', 'http://your-blog.com', '', '', '', 1, 10, ''),
-(20, 'Site.theme', '', '', '', '', 0, 14, ''),
+(20, 'Site.theme', 'Tubes', '', '', '', 0, 14, ''),
 (21, 'Site.feed_url', '', '', '', '', 0, 15, ''),
 (22, 'Reading.nodes_per_page', '5', '', '', '', 1, 16, ''),
 (23, 'Writing.wysiwyg', '1', 'Enable WYSIWYG editor', '', 'checkbox', 1, 17, ''),
@@ -813,7 +819,7 @@ INSERT INTO `settings` (`id`, `key`, `value`, `title`, `description`, `input_typ
 (27, 'Reading.date_time_format', 'D, M d Y H:i:s', '', '', '', 1, 21, ''),
 (28, 'Comment.date_time_format', 'M d, Y', '', '', '', 1, 22, ''),
 (29, 'Site.timezone', '0', '', 'zero (0) for GMT', '', 1, 4, ''),
-(32, 'Hook.bootstraps', 'Settings,Comments,Contacts,Nodes,Meta,Menus,Users,Blocks,Taxonomy,FileManager,Wysiwyg,Ckeditor,Tubes', '', '', '', 0, 23, ''),
+(32, 'Hook.bootstraps', 'Settings,Comments,Contacts,Nodes,Meta,Menus,Users,Blocks,Taxonomy,FileManager,Wysiwyg,Ckeditor,Tubes,Debugkit,DebugKit', '', '', '', 0, 23, ''),
 (33, 'Comment.email_notification', '1', 'Enable email notification', '', 'checkbox', 1, 24, ''),
 (34, 'Access Control.multiRole', '0', 'Enable Multiple Roles', '', 'checkbox', 1, 25, ''),
 (35, 'Access Control.rowLevel', '0', 'Row Level Access Control', '', 'checkbox', 1, 26, ''),
@@ -831,6 +837,7 @@ INSERT INTO `settings` (`id`, `key`, `value`, `title`, `description`, `input_typ
 CREATE TABLE IF NOT EXISTS `sites` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `embed_url` varchar(255) NOT NULL,
   `feed_url` varchar(255) NOT NULL,
   `feed_filename` varchar(255) NOT NULL,
   `deleted_feed_url` varchar(255) NOT NULL,
@@ -846,14 +853,15 @@ CREATE TABLE IF NOT EXISTS `sites` (
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `sites`
 --
 
-INSERT INTO `sites` (`id`, `name`, `feed_url`, `feed_filename`, `deleted_feed_url`, `deleted_feed_filename`, `last_updated_videoid`, `mrss_parts`, `last_mrss_part_parsed`, `max_video_insert`, `max_video_update`, `days_from`, `days_to`, `next_deleted_to_parse`, `created`) VALUES
-(1, 'pornhubdd', 'http://www.pornhub.com/', 'mrss_full.xml', 'http://www.pornhub.com/files/', 'deleted.xml', 0, 0, 0, 0, 0, 17, 7, 0, '2002-06-29 05:00:00');
+INSERT INTO `sites` (`id`, `name`, `embed_url`, `feed_url`, `feed_filename`, `deleted_feed_url`, `deleted_feed_filename`, `last_updated_videoid`, `mrss_parts`, `last_mrss_part_parsed`, `max_video_insert`, `max_video_update`, `days_from`, `days_to`, `next_deleted_to_parse`, `created`) VALUES
+(1, 'sadas', '', 'sadas', 'asdas', 'sadas', 'sadas', 0, 0, 0, 23, 23, 23, 23, 0, '2013-06-13 15:53:00'),
+(2, 'PornHub', 'http://www.pornhub.com/embed/', 'sadfas', 'sadfasd', 'sdfsad', 'sadfsad', 0, 0, 0, 4, 4, 4, 4, 0, '2013-06-13 16:23:00');
 
 -- --------------------------------------------------------
 
@@ -987,7 +995,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated` datetime NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `users`
@@ -1022,25 +1030,20 @@ CREATE TABLE IF NOT EXISTS `videos` (
   `mobile_compatible` tinyint(1) NOT NULL DEFAULT '0',
   `path` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,
-  `node_id` int(20) unsigned NOT NULL,
+  `node_id` int(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `url` (`url`),
   UNIQUE KEY `external_id` (`externalId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Table structure for table `videos_c`
+-- Dumping data for table `videos`
 --
 
-CREATE TABLE IF NOT EXISTS `videos_c` (
-  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `node_id` int(20) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `url` (`url`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+INSERT INTO `videos` (`id`, `externalId`, `site_id`, `status`, `url`, `duration`, `votes`, `local_votes`, `views`, `local_views`, `rating`, `local_rating`, `pub_date`, `thumb_path`, `thumb_width`, `thumb_height`, `mobile_compatible`, `path`, `filename`, `node_id`) VALUES
+(1, 'myexternal', 2, 'dsfsadddaasdsadsad', 'videode', 3, 34, 344, 34, 43, 0.9, 0.9, '34', 'aer', 324, 3242, 1, 'werwe', 'erwe', 0),
+(2, 'SDFGSDFG', 2, 'DFGDSF', 'FDGSD', 33, 3, 3, 3, 3, 0.9, 0.9, 'EWRW', '3', 3, 3, 1, '3', '3', 0),
+(3, '966071111', 2, 'Active', 'http://www.pornhub.com/view_video.php?viewkey=966071111', 33, 6, 9, 7, 9, 0.9, 0.9, 'sd', '2', 2, 2, 1, '2', '2', 8);
 
 -- --------------------------------------------------------
 
