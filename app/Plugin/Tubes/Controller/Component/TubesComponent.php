@@ -22,7 +22,7 @@ class TubesComponent extends Component {
  * @return void
  */
 	public function beforeRender(Controller $controller) {
-            if (isset($controller->Node->Video)) {
+           if ($controller->Node->type == 'video') {
 		$controller->set('sites', $controller->Node->Video->Site->find('list'));
             }
 	}
