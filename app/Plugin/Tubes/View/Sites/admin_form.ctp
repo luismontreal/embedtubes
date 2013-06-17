@@ -39,6 +39,9 @@ echo $this->Form->create('Site');
 				echo $this->Form->input('name', array(
 					'label' => __d('croogo', 'Name'),
 				));
+				echo $this->Form->input('embed_url', array(
+					'label' => __d('croogo', 'Embed Url'),
+				));
 				echo $this->Form->input('feed_url', array(
 					'label' => __d('croogo', 'Feed Url'),
 				));
