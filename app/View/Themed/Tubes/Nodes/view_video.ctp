@@ -1,4 +1,4 @@
-<?php $this->Nodes->set($node); debug($video)?>
+<?php $this->Nodes->set($node);?>
 <div id="node-<?php echo $this->Nodes->field('id'); ?>" class="node node-type-<?php echo $this->Nodes->field('type'); ?>">
 	<h2><?php echo $this->Nodes->field('title'); ?></h2>
 	<?php
