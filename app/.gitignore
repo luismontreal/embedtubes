@@ -2,7 +2,7 @@
 Config/database.php
 Config/settings.json
 Vendor/Simpletest/
-View/Themed/
+#View/Themed/
 webroot/uploads/
 *.bak
 *.swp

@@ -1,0 +1,17 @@
+{
+  "name" : "Tubes",
+  "description" : "Tubes to display videos",
+  "screenshot" : "screenshot.png",
+
+  "author" : "Luis Vega",
+  "authorEmail" : "luismontreal@gmail.com",
+  "authorUrl" : "http://www.luigivega.com",
+
+  "menus" : [
+    "main"
+    ],
+
+  "regions" : [
+    "right"
+    ]
+}
