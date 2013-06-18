@@ -1,7 +1,7 @@
 /**
  * Basic
  */
-body { font-family: Georgia, serif; color: #444; background-color: #fff }
+body { font-family: Georgia, serif; color: #444; background: #fff;}
 
 a { color: #000; text-decoration: underline; }
 a:hover { color: #ff4b33; text-decoration: none; }
@@ -41,7 +41,7 @@ form .error-message { color: #ee4b33; }
  */
 #header h1 { margin: 0px 10px 10px 0px; float:left; }
 #header h1 a { text-decoration: none; }
-#header .site-tagline { color: #fff; font-style: italic; font-size: 13px; }
+#header .site-tagline { color: #666; font-style: italic; font-size: 13px; }
 /*#header .site-title { background-color: #B2D1FF}*/
 #header .site-title a { color: #ff4b33; }
 
