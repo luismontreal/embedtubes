@@ -350,7 +350,7 @@ class NodesController extends NodesAppController {
 		if (!isset($this->request->params['named']['type'])) {
 			$this->request->params['named']['type'] = 'node';
 		}
-
+                
 		$this->paginate['Node']['order'] = 'Node.created DESC';
 		$this->paginate['Node']['limit'] = Configure::read('Reading.nodes_per_page');
 		$this->paginate['Node']['conditions'] = array(
@@ -399,7 +399,8 @@ class NodesController extends NodesAppController {
 			$cacheNamePaging = $cacheNamePrefix . '_' . $this->request->params['named']['type'] . '_' . $this->paginate['page'] . '_' . $this->paginate['Node']['limit'] . '_paging';
 			$cacheConfig = 'nodes_index';
 			$nodes = Cache::read($cacheName, $cacheConfig);
-			if (!$nodes) {
+			if (!$nodes) {                            
+                                $this->paginate = Croogo::dispatchEvent('Controller.Nodes.onPaginate', $this, array('paginate' => $this->paginate, 'type' => $type['Type']['alias']))->data['paginate'];
 				$nodes = $this->paginate('Node');
 				Cache::write($cacheName, $nodes, $cacheConfig);
 				Cache::write($cacheNamePaging, $this->request->params['paging'], $cacheConfig);
