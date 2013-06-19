@@ -22,16 +22,27 @@ class TubesBehavior extends ModelBehavior {
  * @return void
  */
 	public function setup(Model $model, $config = array()) {		
-            if (!isset($this->settings[$model->alias])) {
-		$this->settings[$model->alias] = (array)$config;
-            }
+		if (!isset($this->settings[$model->alias])) {
+			$this->settings[$model->alias] = (array)$config;
+        }
 						
-            $model->hasOne['Video'] = array(
-		'className' => 'Tubes.Video',
-		'foreignKey' => 'node_id',
-		'conditions' => array(),
-		'dependent' => true
-            );
-           
+        $model->hasOne['Video'] = array(
+			'className' => 'Tubes.Video',
+			'foreignKey' => 'node_id',
+			'conditions' => array(),
+			'dependent' => true
+        );           
 	}
+	
+	/*
+	 * 
+	 */
+	/*public function beforeFind(\Model $model, $query) {
+		parent::beforeFind($model, $query);
+		
+		if($model->type == 'video') {
+			$query['contain'][] = 'Video';			
+			return $query;
+		}				
+	}*/
 }

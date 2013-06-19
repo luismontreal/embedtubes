@@ -400,7 +400,7 @@ class NodesController extends NodesAppController {
 			$cacheConfig = 'nodes_index';
 			$nodes = Cache::read($cacheName, $cacheConfig);
 			if (!$nodes) {                            
-                                $this->paginate = Croogo::dispatchEvent('Controller.Nodes.onPaginate', $this, array('paginate' => $this->paginate, 'type' => $type['Type']['alias']))->data['paginate'];
+                $this->paginate = Croogo::dispatchEvent('Controller.Nodes.onPaginate', $this, array('paginate' => $this->paginate, 'type' => $type['Type']['alias']))->data['paginate'];
 				$nodes = $this->paginate('Node');
 				Cache::write($cacheName, $nodes, $cacheConfig);
 				Cache::write($cacheNamePaging, $this->request->params['paging'], $cacheConfig);

@@ -38,6 +38,8 @@ class TubesEventHandler extends Object implements CakeEventListener {
             if($event->data['type'] == 'video') {
                 $event->data['paginate']['Node']['limit'] = 20;
                 $event->data['paginate']['Node']['contain'][] = 'Video';
+				//Unset User
+				unset($event->data['paginate']['Node']['User']);				
             }
             return $event->data;
 		
