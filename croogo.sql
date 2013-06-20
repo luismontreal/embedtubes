@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 17, 2013 at 05:31 PM
+-- Generation Time: Jun 20, 2013 at 06:10 PM
 -- Server version: 5.5.31-0ubuntu0.13.04.1
 -- PHP Version: 5.4.15-1~precise+1
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `acos` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=229 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=231 ;
 
 --
 -- Dumping data for table `acos`
@@ -240,8 +240,8 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (204, 203, NULL, NULL, 'admin_index', 388, 389),
 (205, 203, NULL, NULL, 'admin_edit', 390, 391),
 (206, 203, NULL, NULL, 'admin_delete', 392, 393),
-(227, 1, NULL, NULL, 'Videos', 396, 399),
-(228, 227, NULL, NULL, 'index', 397, 398);
+(229, 1, NULL, NULL, 'Videos', 396, 399),
+(230, 229, NULL, NULL, 'index', 397, 398);
 
 -- --------------------------------------------------------
 
@@ -286,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   `_update` varchar(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `_delete` varchar(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `aros_acos`
@@ -311,7 +311,7 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 (16, 3, 191, '1', '1', '1', '1'),
 (17, 2, 192, '1', '1', '1', '1'),
 (18, 2, 193, '1', '1', '1', '1'),
-(34, 3, 228, '1', '1', '1', '1');
+(35, 3, 230, '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -632,13 +632,7 @@ CREATE TABLE IF NOT EXISTS `nodes` (
 
 INSERT INTO `nodes` (`id`, `parent_id`, `user_id`, `title`, `slug`, `body`, `excerpt`, `status`, `mime_type`, `comment_status`, `comment_count`, `promote`, `path`, `terms`, `sticky`, `lft`, `rght`, `visibility_roles`, `type`, `updated`, `created`) VALUES
 (1, NULL, 1, 'Hello World', 'hello-world', '<p>Welcome to Croogo. This is your first post. You can edit or delete it from the admin panel.</p>', '', 1, '', 2, 1, 1, '/blog/hello-world', '{"1":"uncategorized"}', 0, 1, 2, '', 'blog', '2009-12-25 11:00:00', '2009-12-25 11:00:00'),
-(2, NULL, 1, 'About', 'about', '<p>This is an example of a Croogo page, you could edit this to put information about yourself or your site.</p>\r\n', '', 1, '', 0, 0, 0, '/about', '', 0, 1, 2, '', 'page', '2013-06-11 22:11:37', '2009-12-25 22:00:00'),
-(3, NULL, 1, 'video test', 'dfgdfff', '<p>sadsfdadd</p>\r\n', 'sadsafd', 1, NULL, 2, 0, 0, '/nodes/nodes/view/type:video/slug:dfgdfff', NULL, 0, 3, 4, '', 'video', '2013-06-13 17:14:17', '2013-06-13 16:27:28'),
-(4, NULL, 1, 'pagina 2', 'pagina-2', '<p>sadsad</p>\r\n', 'sdasd', 0, NULL, 1, 0, 0, '/page/pagina-2', NULL, 0, 5, 6, '', 'page', '2013-06-13 16:59:13', '2013-06-13 16:56:43'),
-(5, NULL, 1, 'sfdgsfd', 'sfdgsfd', '<p>gsfdgsdfgs</p>\r\n', 'sdfgsdfgsd', 0, NULL, 2, 0, 0, '/blog/sfdgsfd', '', 0, 7, 8, '', 'blog', '2013-06-13 17:00:08', '2013-06-13 17:00:08'),
-(6, NULL, 1, 'fdgsdgsdsgsdg', 'fdgsdgsdsgsdg', '<p>gsfdgsdgsd</p>\r\n', 'sfdgfsdgsd', 0, NULL, 2, 0, 0, '/blog/fdgsdgsdsgsdg', '', 0, 9, 10, '', 'blog', '2013-06-14 10:26:39', '2013-06-14 10:26:39'),
-(7, NULL, 1, 'testo', 'kjkjsabd kj', '<p>GSFDGSDF</p>\r\n', 'SFGDSGFDS', 0, NULL, 2, 0, 0, '/nodes/nodes/view/type:video/slug:kjkjsabd%20kj', NULL, 0, 11, 12, '', 'video', '2013-06-14 10:57:23', '2013-06-14 10:57:23'),
-(8, NULL, 1, 'Luigi', 'luis', '<p>fgdsgsfd</p>\r\n', 'sfdgsfd', 1, NULL, 2, 0, 0, '/video/luis', NULL, 0, 13, 14, '', 'video', '2013-06-17 09:54:15', '2013-06-14 15:35:32');
+(2, NULL, 1, 'About', 'about', '<p>This is an example of a Croogo page, you could edit this to put information about yourself or your site.</p>\r\n', '', 1, '', 0, 0, 0, '/about', '', 0, 1, 2, '', 'page', '2013-06-11 22:11:37', '2009-12-25 22:00:00');
 
 -- --------------------------------------------------------
 
@@ -651,7 +645,7 @@ CREATE TABLE IF NOT EXISTS `nodes_taxonomies` (
   `node_id` int(20) NOT NULL DEFAULT '0',
   `taxonomy_id` int(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `nodes_taxonomies`
@@ -819,7 +813,7 @@ INSERT INTO `settings` (`id`, `key`, `value`, `title`, `description`, `input_typ
 (27, 'Reading.date_time_format', 'D, M d Y H:i:s', '', '', '', 1, 21, ''),
 (28, 'Comment.date_time_format', 'M d, Y', '', '', '', 1, 22, ''),
 (29, 'Site.timezone', '0', '', 'zero (0) for GMT', '', 1, 4, ''),
-(32, 'Hook.bootstraps', 'Settings,Comments,Contacts,Nodes,Meta,Menus,Users,Blocks,Taxonomy,FileManager,Wysiwyg,Ckeditor,Tubes,Debugkit,DebugKit', '', '', '', 0, 23, ''),
+(32, 'Hook.bootstraps', 'Settings,Comments,Contacts,Nodes,Meta,Menus,Users,Blocks,Taxonomy,FileManager,Wysiwyg,Ckeditor,Debugkit,DebugKit,Tubes', '', '', '', 0, 23, ''),
 (33, 'Comment.email_notification', '1', 'Enable email notification', '', 'checkbox', 1, 24, ''),
 (34, 'Access Control.multiRole', '0', 'Enable Multiple Roles', '', 'checkbox', 1, 25, ''),
 (35, 'Access Control.rowLevel', '0', 'Row Level Access Control', '', 'checkbox', 1, 26, ''),
@@ -853,15 +847,7 @@ CREATE TABLE IF NOT EXISTS `sites` (
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `sites`
---
-
-INSERT INTO `sites` (`id`, `name`, `embed_url`, `feed_url`, `feed_filename`, `deleted_feed_url`, `deleted_feed_filename`, `last_updated_videoid`, `mrss_parts`, `last_mrss_part_parsed`, `max_video_insert`, `max_video_update`, `days_from`, `days_to`, `next_deleted_to_parse`, `created`) VALUES
-(1, 'sadas', '', 'sadas', 'asdas', 'sadas', 'sadas', 0, 0, 0, 23, 23, 23, 23, 0, '2013-06-13 15:53:00'),
-(2, 'PornHub', 'http://www.pornhub.com/embed/', 'sadfas', 'sadfasd', 'sdfsad', 'sadfsad', 0, 0, 0, 4, 4, 4, 4, 0, '2013-06-13 16:23:00');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -947,7 +933,7 @@ INSERT INTO `types` (`id`, `title`, `alias`, `description`, `format_show_author`
 (1, 'Page', 'page', 'A page is a simple method for creating and displaying information that rarely changes, such as an "About us" section of a website. By default, a page entry does not allow visitor comments.', 0, 0, 0, 1, 0, 0, '', '', '2009-09-09 00:23:24', '2009-09-02 18:06:27'),
 (2, 'Blog', 'blog', 'A blog entry is a single post to an online journal, or blog.', 1, 1, 2, 1, 0, 0, '', '', '2009-09-15 12:15:43', '2009-09-02 18:20:44'),
 (4, 'Node', 'node', 'Default content type.', 1, 1, 2, 1, 0, 0, '', '', '2009-10-06 21:53:15', '2009-09-05 23:51:56'),
-(5, 'Video', 'video', 'Adds video content type', 0, 0, 2, 0, 0, 0, '', NULL, '2013-06-11 15:42:14', '2013-06-11 15:42:14');
+(5, 'Video', 'video', 'Adds video content type', 0, 0, 2, 0, 0, 0, '', 'tubes', '2013-06-18 19:12:18', '2013-06-11 15:42:14');
 
 -- --------------------------------------------------------
 
@@ -961,7 +947,7 @@ CREATE TABLE IF NOT EXISTS `types_vocabularies` (
   `vocabulary_id` int(10) NOT NULL,
   `weight` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `types_vocabularies`
@@ -971,7 +957,9 @@ INSERT INTO `types_vocabularies` (`id`, `type_id`, `vocabulary_id`, `weight`) VA
 (24, 4, 1, NULL),
 (25, 4, 2, NULL),
 (30, 2, 1, NULL),
-(31, 2, 2, NULL);
+(31, 2, 2, NULL),
+(32, 5, 1, NULL),
+(33, 5, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -1035,15 +1023,6 @@ CREATE TABLE IF NOT EXISTS `videos` (
   UNIQUE KEY `url` (`url`),
   UNIQUE KEY `external_id` (`externalId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `videos`
---
-
-INSERT INTO `videos` (`id`, `externalId`, `site_id`, `status`, `url`, `duration`, `votes`, `local_votes`, `views`, `local_views`, `rating`, `local_rating`, `pub_date`, `thumb_path`, `thumb_width`, `thumb_height`, `mobile_compatible`, `path`, `filename`, `node_id`) VALUES
-(1, 'myexternal', 2, 'dsfsadddaasdsadsad', 'videode', 3, 34, 344, 34, 43, 0.9, 0.9, '34', 'aer', 324, 3242, 1, 'werwe', 'erwe', 0),
-(2, 'SDFGSDFG', 2, 'DFGDSF', 'FDGSD', 33, 3, 3, 3, 3, 0.9, 0.9, 'EWRW', '3', 3, 3, 1, '3', '3', 0),
-(3, '966071111', 2, 'Active', 'http://www.pornhub.com/view_video.php?viewkey=966071111', 33, 6, 9, 7, 9, 0.9, 0.9, 'sd', '2', 2, 2, 1, '2', '2', 8);
 
 -- --------------------------------------------------------
 
