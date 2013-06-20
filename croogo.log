@@ -18303,3 +18303,18 @@
 [Mon Jun 17 10:00:03 2013] [error] [client 127.0.0.1] PHP  28. Debugger::_export() /home/luigi/www/croogo/lib/Cake/Utility/Debugger.php:599
 [Mon Jun 17 10:00:03 2013] [error] [client 127.0.0.1] PHP  29. Debugger::_object() /home/luigi/www/croogo/lib/Cake/Utility/Debugger.php:504
 [Mon Jun 17 10:00:03 2013] [error] [client 127.0.0.1] PHP  30. implode() /home/luigi/www/croogo/lib/Cake/Utility/Debugger.php:615
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP Fatal error:  Cannot use object of type NodesHelper as array in /home/luigi/www/croogo/app/View/Themed/Tubes/Nodes/index_video.ctp on line 10
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP Stack trace:
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP   1. {main}() /home/luigi/www/croogo/app/webroot/index.php:0
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP   2. Dispatcher->dispatch() /home/luigi/www/croogo/app/webroot/index.php:96
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP   3. Dispatcher->_invoke() /home/luigi/www/croogo/lib/Cake/Routing/Dispatcher.php:162
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP   4. Controller->invokeAction() /home/luigi/www/croogo/lib/Cake/Routing/Dispatcher.php:187
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP   5. ReflectionMethod->invokeArgs() /home/luigi/www/croogo/lib/Cake/Controller/Controller.php:486
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP   6. NodesController->index() /home/luigi/www/croogo/lib/Cake/Controller/Controller.php:486
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP   7. NodesController->_viewFallback() /home/luigi/www/croogo/app/Plugin/Nodes/Controller/NodesController.php:418
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP   8. CroogoAppController->render() /home/luigi/www/croogo/app/Plugin/Nodes/Controller/NodesController.php:764
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP   9. Controller->render() /home/luigi/www/croogo/app/Plugin/Croogo/Controller/CroogoAppController.php:236
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP  10. View->render() /home/luigi/www/croogo/lib/Cake/Controller/Controller.php:948
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP  11. View->_render() /home/luigi/www/croogo/lib/Cake/View/View.php:471
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP  12. View->_evaluate() /home/luigi/www/croogo/lib/Cake/View/View.php:909
+[Thu Jun 20 13:11:31 2013] [error] [client 127.0.0.1] PHP  13. include() /home/luigi/www/croogo/lib/Cake/View/View.php:947
