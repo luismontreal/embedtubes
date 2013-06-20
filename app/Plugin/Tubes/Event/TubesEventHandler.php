@@ -22,8 +22,11 @@ class TubesEventHandler extends Object implements CakeEventListener {
 	public function implementedEvents() {
            
 		return array(
-			'Controller.Nodes.onPaginate' => array(
-				'callable' => 'onPaginate',
+		    'Controller.Nodes.onPaginate' => array(
+			'callable' => 'onPaginate',
+			),
+		    'Model.Node.beforeFind' => array(
+			'callable' => 'beforeFind',
 			),
 		);
 	}
@@ -43,6 +46,17 @@ class TubesEventHandler extends Object implements CakeEventListener {
             }
             return $event->data;
 		
+	}
+	
+	public function beforeFind($event) {
+	    if(isset($event->data['options']['conditions']['Node.type']) && 
+		    $event->data['options']['conditions']['Node.type'] == 'video') {
+		
+		$event->data['options']['contain'][] = 'Video';
+		$event->data['options']['contain'][] = 'Video.Site';
+	    }
+	    
+            return $event->data;
 	}
 
 }

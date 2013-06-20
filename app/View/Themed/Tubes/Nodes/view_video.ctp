@@ -1,7 +1,7 @@
 <?php $this->Nodes->set($node);?>
 <div id="node-<?php echo $this->Nodes->field('id'); ?>" class="node node-type-<?php echo $this->Nodes->field('type'); ?>">
-	<iframe src="<?=$this->Nodes->node['Site']['embed_url'] . $this->Nodes->node['Video']['externalId']?>" frameborder="0" width="608" height="468" scrolling="no">
-	brought to you by <?=$this->Nodes->node['Site']['name']?></iframe>
+	<iframe src="<?=$this->Nodes->node['Video']['Site']['embed_url'] . $this->Nodes->node['Video']['externalId']?>" frameborder="0" width="608" height="468" scrolling="no">
+	brought to you by <?=$this->Nodes->node['Video']['Site']['name']?></iframe>
 	<h2><?php echo $this->Nodes->field('title'); ?></h2>
 	<?php
 		echo $this->Nodes->info();

@@ -669,10 +669,10 @@ class NodesController extends NodesAppController {
 					),
 					'User',
 				),
-				'cache' => array(
+				/*'cache' => array(
 					'name' => 'node_' . $this->Croogo->roleId . '_' . $this->request->params['named']['type'] . '_' . $this->params['named']['slug'],
 					'config' => 'nodes_view',
-				),
+				),*/
 			));
 		} elseif ($id == null) {
 			$this->Session->setFlash(__d('croogo', 'Invalid content'), 'default', array('class' => 'error'));

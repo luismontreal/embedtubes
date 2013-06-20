@@ -13,5 +13,9 @@ App::uses('AppModel', 'Model');
  * @link     http://www.croogo.org
  */
 class NodesAppModel extends AppModel {
+    public function find($type = 'first', $options = array()) {
+	$options = Croogo::dispatchEvent('Model.Node.beforeFind', $this, array('options' => $options))->data['options'];
+        return parent::find($type, $options);
+    }
 
 }

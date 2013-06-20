@@ -22,15 +22,10 @@ class TubesComponent extends Component {
  * @return void
  */
 	public function beforeRender(Controller $controller) {
-           if ($controller->Node->type == 'video') {
-                if ($controller->action == 'view') {
-					//@TODO cache this
-                    $nid = $controller->viewVars['node']['Node']['id'];
-                    $videoInfo = $controller->Node->Video->findByNodeId($nid, array('Video.*', 'Site.*'));
-                    $controller->viewVars['node'] = array_merge($controller->viewVars['node'], $videoInfo);
-                } elseif ($controller->action == 'admin_edit' || $controller->action == 'admin_add') {
-                    $controller->set('sites', $controller->Node->Video->Site->find('list'));
-                }
+	    if (($controller->action == 'admin_edit' || $controller->action == 'admin_add') &&
+		$controller->Node->type == 'video') {
+               
+		$controller->set('sites', $controller->Node->Video->Site->find('list'));
             }
 	}
 
