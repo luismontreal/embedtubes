@@ -11,7 +11,7 @@
         "title": "EmbedTubes"
     },
     "Hook": {
-        "bootstraps": "Settings,Comments,Contacts,Nodes,Meta,Menus,Users,Blocks,Taxonomy,FileManager,Wysiwyg,Ckeditor,Debugkit,DebugKit,Tubes,Translate"
+        "bootstraps": "Settings,Comments,Contacts,Nodes,Meta,Menus,Users,Blocks,Taxonomy,FileManager,Wysiwyg,Ckeditor,Debugkit,Tubes,Translate,DebugKit"
     },
     "Access Control": {
         "autoLoginDuration": "+1 week",
