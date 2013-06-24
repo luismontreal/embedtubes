@@ -116,7 +116,7 @@ Configure::write('Routing.prefixes', array('admin'));
  * Turn off all caching application-wide.
  *
  */
-//Configure::write('Cache.disable', true);
+Configure::write('Cache.disable', true);
 
 /**
  * Enable cache checking.

@@ -14,7 +14,7 @@ class Mrss extends TubesAppModel {
 	const UPDATING_DB = 'updatingDB';
 	
 	//Downloading functions
-	public function downloadSource();
+	/*public function downloadSource();
 	public function downloadDeleted();		
 	
 	//Storing in filesystem functions
@@ -37,6 +37,6 @@ class Mrss extends TubesAppModel {
 	//Informes about what process are running
 	public function setStatus($param);
 	public function removeStatus($param);
-
+*/
 
 }
