@@ -1,7 +1,7 @@
 <?php
 App::import('Vendor', 'Tubes.MrssParser');
 class MrssShell extends AppShell {
-    public $uses = array('Tubes.Site');
+    public $uses = array('Tubes.Site', 'Nodes.Node');
     public $site;
 	
     public function __construct($stdout = null, $stderr = null, $stdin = null) {
@@ -13,7 +13,7 @@ class MrssShell extends AppShell {
 		switch ($this->args[0]) {
 			case 'Pornhub':				
 				require_once("importers/PornhubMrss.php");				
-				$this->site = new PornhubMrss($this->_getSettings());												
+				$this->site = new PornhubMrss($this->__getSettings(), $this);												
 				break;
 
 			default:
@@ -46,7 +46,7 @@ class MrssShell extends AppShell {
 		return $parser;
     }
     
-    private function _getSettings () {
+    private function __getSettings () {
 		$this->Site->unbindModel(
 			array('hasMany' => array('Video'))
 		);
@@ -72,7 +72,7 @@ class MrssShell extends AppShell {
 		);
 						
 		$settings = array_merge($this->Site->findByName($this->args[0]), $calculatedSettings);
-		debug($settings);exit;
+		
 		return $settings;
     }
 
