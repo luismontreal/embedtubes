@@ -1,7 +1,7 @@
 <?php
 App::import('Vendor', 'Tubes.MrssParser');
 class MrssShell extends AppShell {
-    public $uses = array('Tubes.Site', 'Nodes.Node');
+    public $uses = array('Tubes.Site', 'Nodes.Node', 'Taxonomy.Taxonomy','Taxonomy.Term');
     public $site;
 	
     public function __construct($stdout = null, $stderr = null, $stdin = null) {
