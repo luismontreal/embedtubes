@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 20, 2013 at 06:10 PM
+-- Generation Time: Jun 27, 2013 at 07:48 PM
 -- Server version: 5.5.31-0ubuntu0.13.04.1
 -- PHP Version: 5.4.15-1~precise+1
 
@@ -624,7 +624,7 @@ CREATE TABLE IF NOT EXISTS `nodes` (
   `updated` datetime NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `nodes`
@@ -632,7 +632,8 @@ CREATE TABLE IF NOT EXISTS `nodes` (
 
 INSERT INTO `nodes` (`id`, `parent_id`, `user_id`, `title`, `slug`, `body`, `excerpt`, `status`, `mime_type`, `comment_status`, `comment_count`, `promote`, `path`, `terms`, `sticky`, `lft`, `rght`, `visibility_roles`, `type`, `updated`, `created`) VALUES
 (1, NULL, 1, 'Hello World', 'hello-world', '<p>Welcome to Croogo. This is your first post. You can edit or delete it from the admin panel.</p>', '', 1, '', 2, 1, 1, '/blog/hello-world', '{"1":"uncategorized"}', 0, 1, 2, '', 'blog', '2009-12-25 11:00:00', '2009-12-25 11:00:00'),
-(2, NULL, 1, 'About', 'about', '<p>This is an example of a Croogo page, you could edit this to put information about yourself or your site.</p>\r\n', '', 1, '', 0, 0, 0, '/about', '', 0, 1, 2, '', 'page', '2013-06-11 22:11:37', '2009-12-25 22:00:00');
+(2, NULL, 1, 'About', 'about', '<p>This is an example of a Croogo page, you could edit this to put information about yourself or your site.</p>\r\n', '', 1, '', 0, 0, 0, '/about', '', 0, 1, 2, '', 'page', '2013-06-11 22:11:37', '2009-12-25 22:00:00'),
+(3, NULL, 1, 'video test', 'video-test', '<p>bla bla bosy</p>\r\n', 'Bla bla exceprt', 1, NULL, 2, 0, 0, '/video/video-test', '{"1":"uncategorized","5":"straight"}', 0, 3, 4, '', 'video', '2013-06-26 11:12:58', '2013-06-25 08:41:09');
 
 -- --------------------------------------------------------
 
@@ -652,7 +653,9 @@ CREATE TABLE IF NOT EXISTS `nodes_taxonomies` (
 --
 
 INSERT INTO `nodes_taxonomies` (`id`, `node_id`, `taxonomy_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 3, 5),
+(3, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -847,7 +850,14 @@ CREATE TABLE IF NOT EXISTS `sites` (
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `sites`
+--
+
+INSERT INTO `sites` (`id`, `name`, `embed_url`, `feed_url`, `feed_filename`, `deleted_feed_url`, `deleted_feed_filename`, `last_updated_videoid`, `mrss_parts`, `last_mrss_part_parsed`, `max_video_insert`, `max_video_update`, `days_from`, `days_to`, `next_deleted_to_parse`, `created`) VALUES
+(1, 'Pornhub', 'http://www.pornhub.com/embed/', 'http://www.pornhub.com/', 'mrss_full.xml', 'http://www.pornhub.com/files/', 'deleted.xml', 0, 0, 0, 25, 500, 14, 7, 0, '2013-06-25 08:36:00');
 
 -- --------------------------------------------------------
 
@@ -863,7 +873,7 @@ CREATE TABLE IF NOT EXISTS `taxonomies` (
   `lft` int(11) DEFAULT NULL,
   `rght` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `taxonomies`
@@ -872,7 +882,10 @@ CREATE TABLE IF NOT EXISTS `taxonomies` (
 INSERT INTO `taxonomies` (`id`, `parent_id`, `term_id`, `vocabulary_id`, `lft`, `rght`) VALUES
 (1, NULL, 1, 1, 1, 2),
 (2, NULL, 2, 1, 3, 4),
-(3, NULL, 3, 2, 1, 2);
+(3, NULL, 3, 2, 1, 2),
+(4, NULL, 4, 3, 1, 2),
+(5, NULL, 5, 3, 3, 4),
+(6, NULL, 6, 3, 5, 6);
 
 -- --------------------------------------------------------
 
@@ -889,7 +902,7 @@ CREATE TABLE IF NOT EXISTS `terms` (
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `terms`
@@ -898,7 +911,10 @@ CREATE TABLE IF NOT EXISTS `terms` (
 INSERT INTO `terms` (`id`, `title`, `slug`, `description`, `updated`, `created`) VALUES
 (1, 'Uncategorized', 'uncategorized', '', '2009-07-22 03:38:43', '2009-07-22 03:34:56'),
 (2, 'Announcements', 'announcements', '', '2010-05-16 23:57:06', '2009-07-22 03:45:37'),
-(3, 'mytag', 'mytag', '', '2009-08-26 14:42:43', '2009-08-26 14:42:43');
+(3, 'mytag', 'mytag', '', '2009-08-26 14:42:43', '2009-08-26 14:42:43'),
+(4, 'Gay', 'gay', '', '2013-06-26 11:09:06', '2013-06-26 11:08:54'),
+(5, 'Straight', 'straight', '', '2013-06-26 11:09:19', '2013-06-26 11:09:19'),
+(6, 'Transexual', 'transexual', '', '2013-06-26 11:09:36', '2013-06-26 11:09:36');
 
 -- --------------------------------------------------------
 
@@ -933,7 +949,7 @@ INSERT INTO `types` (`id`, `title`, `alias`, `description`, `format_show_author`
 (1, 'Page', 'page', 'A page is a simple method for creating and displaying information that rarely changes, such as an "About us" section of a website. By default, a page entry does not allow visitor comments.', 0, 0, 0, 1, 0, 0, '', '', '2009-09-09 00:23:24', '2009-09-02 18:06:27'),
 (2, 'Blog', 'blog', 'A blog entry is a single post to an online journal, or blog.', 1, 1, 2, 1, 0, 0, '', '', '2009-09-15 12:15:43', '2009-09-02 18:20:44'),
 (4, 'Node', 'node', 'Default content type.', 1, 1, 2, 1, 0, 0, '', '', '2009-10-06 21:53:15', '2009-09-05 23:51:56'),
-(5, 'Video', 'video', 'Adds video content type', 0, 0, 2, 0, 0, 0, '', 'tubes', '2013-06-18 19:12:18', '2013-06-11 15:42:14');
+(5, 'Video', 'video', 'Adds video content type', 0, 0, 2, 0, 0, 0, '', '', '2013-06-18 19:12:18', '2013-06-11 15:42:14');
 
 -- --------------------------------------------------------
 
@@ -947,7 +963,7 @@ CREATE TABLE IF NOT EXISTS `types_vocabularies` (
   `vocabulary_id` int(10) NOT NULL,
   `weight` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `types_vocabularies`
@@ -959,7 +975,8 @@ INSERT INTO `types_vocabularies` (`id`, `type_id`, `vocabulary_id`, `weight`) VA
 (30, 2, 1, NULL),
 (31, 2, 2, NULL),
 (32, 5, 1, NULL),
-(33, 5, 2, NULL);
+(33, 5, 2, NULL),
+(34, 5, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -1000,9 +1017,9 @@ INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `name`, `email`, `
 
 CREATE TABLE IF NOT EXISTS `videos` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
-  `externalId` varchar(255) NOT NULL,
+  `externalId` varchar(255) CHARACTER SET utf8 NOT NULL,
   `site_id` int(20) NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'active',
   `url` varchar(255) CHARACTER SET utf8 NOT NULL,
   `duration` int(11) NOT NULL,
   `votes` int(20) NOT NULL DEFAULT '0',
@@ -1011,18 +1028,25 @@ CREATE TABLE IF NOT EXISTS `videos` (
   `local_views` int(20) NOT NULL DEFAULT '0',
   `rating` decimal(1,1) NOT NULL DEFAULT '0.0',
   `local_rating` decimal(1,1) NOT NULL DEFAULT '0.0',
-  `pub_date` varchar(255) DEFAULT NULL,
-  `thumb_path` varchar(255) DEFAULT NULL,
+  `pub_date` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `thumb_path` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `thumb_width` int(4) NOT NULL,
   `thumb_height` int(4) NOT NULL,
   `mobile_compatible` tinyint(1) NOT NULL DEFAULT '0',
-  `path` varchar(255) NOT NULL,
-  `filename` varchar(255) NOT NULL,
+  `path` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `filename` varchar(255) CHARACTER SET utf8 NOT NULL,
   `node_id` int(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `url` (`url`),
   UNIQUE KEY `external_id` (`externalId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `videos`
+--
+
+INSERT INTO `videos` (`id`, `externalId`, `site_id`, `status`, `url`, `duration`, `votes`, `local_votes`, `views`, `local_views`, `rating`, `local_rating`, `pub_date`, `thumb_path`, `thumb_width`, `thumb_height`, `mobile_compatible`, `path`, `filename`, `node_id`) VALUES
+(1, '989229088', 1, 'Active', 'http://www.pornhub.com/view_video.php?viewkey=989229088', 894, 20, 0, 487678, 30, 0.9, 0.9, 'Sat, 22 Jun 2013 08:30:17 EDT', 'http://cdn1a.image.pornhub.phncdn.com/videos/201305/23/12496231/160x120/12.jpg', 160, 120, 1, '', '', 3);
 
 -- --------------------------------------------------------
 
@@ -1044,7 +1068,7 @@ CREATE TABLE IF NOT EXISTS `vocabularies` (
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `vocabulary_alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `vocabularies`
@@ -1052,7 +1076,8 @@ CREATE TABLE IF NOT EXISTS `vocabularies` (
 
 INSERT INTO `vocabularies` (`id`, `title`, `alias`, `description`, `required`, `multiple`, `tags`, `plugin`, `weight`, `updated`, `created`) VALUES
 (1, 'Categories', 'categories', '', 0, 1, 0, '', 1, '2010-05-17 20:03:11', '2009-07-22 02:16:21'),
-(2, 'Tags', 'tags', '', 0, 1, 0, '', 2, '2010-05-17 20:03:11', '2009-07-22 02:16:34');
+(2, 'Tags', 'tags', '', 0, 1, 0, '', 2, '2010-05-17 20:03:11', '2009-07-22 02:16:34'),
+(3, 'Segments', 'segments', 'Describes sexual oriented videos', 0, 0, 0, NULL, NULL, '2013-06-26 11:08:39', '2013-06-26 11:08:39');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
