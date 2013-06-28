@@ -1,14 +1,17 @@
 <?php
+// Call me like "cake mrss run Pornhub storeFS"
 App::import('Vendor', 'Tubes.MrssParser');
 class MrssShell extends AppShell {
-    public $uses = array('Tubes.Site', 'Nodes.Node', 'Taxonomy.Taxonomy','Taxonomy.Term');
+    public $uses = array('Tubes.Site', 'Nodes.Node', 'Taxonomy.Taxonomy','Taxonomy.Term', 'Taxonomy.Vocabulary');
     public $site;
 	
     public function __construct($stdout = null, $stderr = null, $stdin = null) {
 		parent::__construct($stdout, $stderr, $stdin);
     }
 	    
-    
+	/*
+	 * Mrss Dispatcher
+	 */
     public function run() {        							
 		switch ($this->args[0]) {
 			case 'Pornhub':				
@@ -51,13 +54,13 @@ class MrssShell extends AppShell {
 			array('hasMany' => array('Video'))
 		);
 				
-		$feedFolder = ROOT . '/' . "feeds/".$this->args[0]."/";
-		$feedMrssFolder = $feedFolder."mrss/";
-		$partsFolder = $feedMrssFolder . "parts/";		
-		$storageFolder = $feedFolder . "items/";		
-		$deletedFolder = $feedFolder.'deleted/';
-		$deletedPartsFolder = $deletedFolder . "parts/";
-		$deletedFolderItems = $deletedFolder.'items/';				
+		$feedFolder = ROOT . DS . "feeds". DS .$this->args[0].DS;
+		$feedMrssFolder = $feedFolder."mrss" . DS;
+		$partsFolder = $feedMrssFolder . "parts" . DS;		
+		$storageFolder = $feedFolder . "items" . DS;		
+		$deletedFolder = $feedFolder.'deleted' . DS;
+		$deletedPartsFolder = $deletedFolder . "parts" . DS;
+		$deletedFolderItems = $deletedFolder.'items' . DS;				
 		$partPrefix = "mrss_part_";	
 		
 		$calculatedSettings = array(

@@ -4,7 +4,14 @@
 // mkdir -p feeds/Pornhub/mrss/parts
 // mkdir -p feeds/Pornhub/deleted/items
 // mkdir -p feeds/Pornhub/deleted/parts
+
+App::uses('Folder', 'Utility');
+App::uses('File', 'Utility');
 class PornhubMrss  {
+	const CATEGORIES = 1;
+	const TAGS = 2;
+	const SEGMENTS = 3;
+	
     public $settings;
 	public $shell;
 	
@@ -51,7 +58,8 @@ class PornhubMrss  {
     /*
     * Stores in FileSystem Video Feed and Deleted
     */
-    public function storeFS() {		
+    public function storeFS() {
+		//@TODO Use cakephp instead of shell_exec
 		$numberOfParts = shell_exec('ls -lR '.$this->settings['partsFolder'].$this->settings['partPrefix'].'* | grep ^- | wc -l');			
 		$partsToParse = 3; //@TODO must come from the DB
 		$partsToParseLimit = 0; //@TODO must come from the DB
@@ -61,21 +69,22 @@ class PornhubMrss  {
 			$mrss = new MrssParser($this->settings['partsFolder'].$mrssPartName);
 			
 			foreach($mrss as $key => $item) {
-
 				if($this->__meetsCondition($item)) {
 					//map to local structure
-					$mappedItem = $this->__mapItem($item);
-					debug($mappedItem);exit;
-					//store in filesystem			
-					/*$subdir = date("Y/m/d", $mappedItem["video_embedded"]["pub_date"]);					
-					$itemFileName = md5($mappedItem['video_embedded']['link']);
+					$mappedItem = $this->__mapItem($item);					
 					
-					$path = $this->settings['storageFolder'] . $subdir . '/';
-					$mappedItem['video_embedded']['local_pathname'] = $path;
-					$mappedItem['video_embedded']['local_filename'] = $itemFileName;
-					$mappedItem['video_embedded']['mrss_part'] = $mrssPartName;
-					LibFE_Helpers::makeDir($path);
-					file_put_contents($path.$itemFileName, json_encode($mappedItem));*/
+					//get subdirectory structure
+					$subdir = date("Y/m/d", $mappedItem["Video"]["pub_date"]);					
+					$itemFileName = md5($mappedItem['Video']['url']);
+					
+					$path = $this->settings['storageFolder'] . $subdir . DS;
+					$mappedItem['Video']['path'] = $path;
+					$mappedItem['Video']['filename'] = $itemFileName;					
+					//$mappedItem['Video']['mrss_part'] = $mrssPartName;					
+					
+					//Creating directory and saving					
+					new Folder($path, true, 0775);					
+					file_put_contents($path.$itemFileName, json_encode($mappedItem));					
 				}			
 			}
 		}
@@ -85,14 +94,14 @@ class PornhubMrss  {
     * Stores in DB
     */
     public function storeDB() {
-	$this->out('Hey there ' . $this->args[0]);
+		$this->out('Hey there ' . $this->args[0]);
     }
 	
 	/*
 	 * Stores in DB
 	 */
     public function updateDB() {
-	$this->out('Hey there ' . $this->args[0]);
+		$this->out('Hey there ' . $this->args[0]);
     }
 	
 	private function __meetsCondition(&$item) {		
@@ -131,17 +140,15 @@ class PornhubMrss  {
 			$segment = 'straight';
 		}
 		
-		$segmentTax = $this->shell->Term->findBySlug($segment);
-		debug($segmentTax);exit;
-		//Map Categories and Tags from data keywords
-		//categories
-		$itemCats = str_replace(',', '","', $item["media:category"]);
-		$itemCats = '"' . $itemCats . '"';		
-		
-		//tags
-		$itemTags = str_replace(',', '","', $item["media:keywords"]);
-		$itemTags = '"' . $itemTags . '"';		
-		
+		$terms = array(
+			self::CATEGORIES => $item["media:category"],
+			self::TAGS => $item["media:keywords"],
+			self::SEGMENTS => $segment,
+		);		
+				
+		//Map Taxonomies (Categories, Tags and Segment)		
+		$itemTaxonomies = $this->__processTaxonomies($terms);
+						
 		// Map according to notesforcroogo.txt	
 		$mappedItem = array(
 			'Node' => array(
@@ -183,14 +190,79 @@ class PornhubMrss  {
 				'filename' => '', //defined in storeFS Function
 				'node_id' => '' // automatically set to new create node
 			),
-			/*'TaxonomyData' => array(
-				
-			),*/
-		);					
-			
-			return $mappedItem;
-			
+			// Vocabularies 1:Categories 2:Tags 3:Segments
+			'TaxonomyData' => $itemTaxonomies
+		);										
+		return $mappedItem;		
 	}
+	/*
+	 * Creates new terms if needed then return Taxonomy Arrar format to be used with the Node
+	 */
+	private function __processTaxonomies ($terms) {
+		$taxonomies = array();				
+		// Process terms
+		foreach($terms as $vid => $t) {
+			if(!empty($t)) {
+				$words = explode(',', $t);
 
+				foreach($words as $w) {
+					// Find Term in Model
+					$term = $this->shell->Term->find('first', array(
+						'conditions' => array('Term.slug' => Inflector::slug($w, '-')),
+						'fields' => array('Term.id'),
+						'contain' => array(),
+					)); 
+
+					//If term exists
+					if(!empty($term['Term']['id'])) {
+						$tid = $term['Term']['id'];
+						//check if it belongs to Vocabulary Categories			
+						
+						if($this->shell->Taxonomy->termInVocabulary($tid,$vid) == false) {
+							//Add it to vocabulary
+							$this->__addTermToVocabulary($tid, $vid);
+						}					
+					} else {
+						//create term and add it to vocabulary
+						$tid = $this->__createTerm($w, $vid);
+					}
+
+					//Prepare taxonomies array
+					$taxonomies[$vid][] = $tid;					
+				}				
+			}
+		}
+		return $taxonomies;
+	}
+	
+	private function __createTerm($termName, $vid) {
+		$data = array(
+			'title' => $termName,
+			'slug' => Inflector::slug($termName, '-'),
+			'description' => 'Created from Pornhub'
+		);
+		
+		$termId = $this->shell->Term->saveAndGetId($data);				
+		
+		$this->__addTermToVocabulary($termId, $vid);
+		
+		return $termId;
+	}
+	
+	private function __addTermToVocabulary($termId, $vid) {				
+		$this->shell->Term->Taxonomy->Behaviors->load('Tree', array(
+			'scope' => array(
+				'Taxonomy.vocabulary_id' => (int) $vid,
+			),
+		));				
+		
+		$taxonomy = array(
+			'parent_id' => null,
+			'term_id' => (int) $termId,
+			'vocabulary_id' => $vid,
+		);
+		$this->shell->Term->Taxonomy->create();
+		$this->shell->Term->Taxonomy->save($taxonomy);				
+	}
 }
 
