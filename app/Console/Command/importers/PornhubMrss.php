@@ -57,6 +57,7 @@ class PornhubMrss  {
 	
     /*
     * Stores in FileSystem Video Feed and Deleted
+     * cake mrss run Pornhub storeFS
     */
     public function storeFS() {
 		//@TODO Use cakephp instead of shell_exec
@@ -91,10 +92,40 @@ class PornhubMrss  {
     }
 	
     /*
-    * Stores in DB
+    * Stores videos in DB
+	* cake mrss run Pornhub storeDB
     */
     public function storeDB() {
-		$this->out('Hey there ' . $this->args[0]);
+		$maxInserts = $this->settings['Site']['max_video_insert'];
+		$from = $this->settings['Site']['days_from'];
+		$to = $this->settings['Site']['days_to'];
+		
+		//start reading from $from-$to days ago		
+		$foldersToRead = $this->__getFoldersToRead($from, $to);
+		
+		foreach ($foldersToRead as $folder) {
+			$filesToRead = $this->__getFilesToRead($folder);
+			
+			foreach($filesToRead as $fileName) {
+				$videoFile = $folder.$fileName;
+				$videoData = json_decode(file_get_contents($videoFile), TRUE);
+				
+				$videoExists = $this->shell->Node->Video->findByUrl($videoData['Video']['url']);
+				
+				if(empty($videoExists)) {
+					$videoData['Video']['file_md5'] = md5_file($videoData['Video']['path'].$videoData['Video']['filename']);
+					$this->shell->Node->create();
+					$this->shell->Node->saveNode($videoData, 'video');
+					$maxInserts--;
+				}																
+		
+				if($maxInserts == 0) {
+					return TRUE;
+				}
+			}
+			
+		}
+		return TRUE;
     }
 	
 	/*
@@ -263,6 +294,31 @@ class PornhubMrss  {
 		);
 		$this->shell->Term->Taxonomy->create();
 		$this->shell->Term->Taxonomy->save($taxonomy);				
+	}
+	
+	//limit1 one must have a higher value than limit2
+	private function __getFoldersToRead($limit1, $limit2){
+		$folders = array();
+		$day = 24 * 60 * 60;				
+		
+		for($limit1; $limit1 >= $limit2; $limit1--) {
+			$folders[] = $this->settings['storageFolder'] . date('Y/m/d', time() - ($limit1 * $day)) .'/'; //one day ago			
+		}
+		
+		return $folders;
+		
+	}
+	/*
+	 * Get json files to read
+	 */
+	private function __getFilesToRead ($folder) {
+		if(is_dir($folder)) {
+			$allFiles = scandir($folder);
+			$filesToExclude = array('.', '..');
+			return array_diff($allFiles, $filesToExclude);
+		}
+		
+		return array();
 	}
 }
 
