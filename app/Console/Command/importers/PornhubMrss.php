@@ -136,12 +136,12 @@ class PornhubMrss  {
 		
 		$videosToUpdate = $this->shell->Node->Video->find('all', 
 				array(
-					'conditions' => array('Video.id >' => $this->settings['Site']['last_updated_videoid']),
+					'conditions' => array('Video.id >' => $this->settings['Site']['last_updated_videoid'], 'Video.status' => 'active'),
 					'fields' => array('Video.id', 'Video.path', 'Video.filename', 'Video.file_md5', 'Video.node_id'),
 					'limit' => $this->settings['Site']['max_video_update'],
 				)
 		);
-		
+		debug($videosToUpdate);exit;
 		if(empty($videosToUpdate)) {
 			$this->shell->Node->Video->Site->id = $this->settings['Site']['id'];
 			$this->shell->Node->Video->Site->saveField('last_updated_videoid', 0);
