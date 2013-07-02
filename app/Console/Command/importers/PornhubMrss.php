@@ -129,10 +129,54 @@ class PornhubMrss  {
     }
 	
 	/*
-	 * Stores in DB
+	 * Updates DB
+	 * cake mrss run Pornhub updateDB
 	 */
     public function updateDB() {
-		$this->out('Hey there ' . $this->args[0]);
+		
+		$videosToUpdate = $this->shell->Node->Video->find('all', 
+				array(
+					'conditions' => array('Video.id >' => $this->settings['Site']['last_updated_videoid']),
+					'fields' => array('Video.id', 'Video.path', 'Video.filename', 'Video.file_md5', 'Video.node_id'),
+					'limit' => $this->settings['Site']['max_video_update'],
+				)
+		);
+		
+		if(empty($videosToUpdate)) {
+			$this->shell->Node->Video->Site->id = $this->settings['Site']['id'];
+			$this->shell->Node->Video->Site->saveField('last_updated_videoid', 0);
+		} else {
+			foreach($videosToUpdate as $v) {
+				$video = $v['Video'];
+				//First check if video is deleted
+				/*$path = $this->getDeletedSubdir($video['local_filename']);
+				if(file_exists($path.$video['local_filename'])) {
+					$this->adapter->update('video', array('status' => 'deleted', 'time_deleted' => time()), 'id='.$video['id']);
+					continue;
+				}*/
+				//Update only if the jsonfile has changed
+				$videoFile = $video['path'] . $video['filename'];
+				if($video['file_md5'] != md5_file($videoFile)) {
+					//getting json data
+					$videoData = json_decode(file_get_contents($videoFile), TRUE);
+					$videoData['Node']['id'] = $video['node_id'];
+					$videoData['Video']['id'] = $video['id'];
+					//setting id for cakephp save
+					$videoData['Video']['file_md5'] = md5_file($videoFile);
+					$videoData['Video']['node_id'] = $video['node_id'];
+					//unsetting values we don`t want to reset (local values)
+					unset($videoData['Video']['local_votes']);
+					unset($videoData['Video']['local_views']);
+					unset($videoData['Video']['local_rating']);
+					
+					$this->shell->Node->id = $video['node_id'];
+					$this->shell->Node->saveNode($videoData, 'video');
+				}
+			}
+			//Sets last video id checked for updates
+			$this->shell->Node->Video->Site->id = $this->settings['Site']['id'];
+			$this->shell->Node->Video->Site->saveField('last_updated_videoid',  $video['id']);
+		}
     }
 	
 	private function __meetsCondition(&$item) {		
@@ -202,7 +246,6 @@ class PornhubMrss  {
 				'id' => '',
 				'externalId' => $viewkey,
 				'site_id' => '1',
-				'segment' => $segment,
 				'status' => 'active',
 				'url' => $item["link"],
 				'duration' => $item["media:content"]["@duration"],
