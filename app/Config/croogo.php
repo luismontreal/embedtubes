@@ -32,7 +32,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-Configure::write('debug', 2);
+Configure::write('debug', 0);
 
 /**
  * Configure the Error handler used to handle errors for your application.  By default
@@ -116,7 +116,7 @@ Configure::write('Routing.prefixes', array('admin'));
  * Turn off all caching application-wide.
  *
  */
-Configure::write('Cache.disable', true);
+Configure::write('Cache.disable', false);
 
 /**
  * Enable cache checking.
@@ -173,7 +173,7 @@ define('LOG_ERROR', LOG_ERR);
  *
  */
 Configure::write('Session', array(
-	'defaults' => 'php',
+	'defaults' => 'cache',
 	'ini' => array(
 		'session.cookie_httponly' => 1
 	)
@@ -295,8 +295,9 @@ Configure::write('Acl.database', 'default');
  * If running via cli - apc is disabled by default. ensure it's available and enabled in this case
  *
  */
-$engine = 'File';
-Configure::write('Cache.defaultEngine', $engine);
+$engine = 'Apc';
+//Configure::write('Cache.defaultEngine', $engine);
+Configure::write('Cache.defaultEngine', 'Memcache');
 if (extension_loaded('apc') && (php_sapi_name() !== 'cli' || ini_get('apc.enable_cli'))) {
 	$engine = 'Apc';
 }
