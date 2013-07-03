@@ -40,6 +40,7 @@ class PornhubMrss  {
     
     /*
     * Downloads Video Feed
+	 * cake mrss run Pornhub downloadDeleted
     */
     public function downloadDeleted () {
 		$partSize = '2M';
@@ -141,19 +142,20 @@ class PornhubMrss  {
 					'limit' => $this->settings['Site']['max_video_update'],
 				)
 		);
-		debug($videosToUpdate);exit;
+		
 		if(empty($videosToUpdate)) {
 			$this->shell->Node->Video->Site->id = $this->settings['Site']['id'];
 			$this->shell->Node->Video->Site->saveField('last_updated_videoid', 0);
 		} else {
 			foreach($videosToUpdate as $v) {
 				$video = $v['Video'];
-				//First check if video is deleted
-				/*$path = $this->getDeletedSubdir($video['local_filename']);
-				if(file_exists($path.$video['local_filename'])) {
-					$this->adapter->update('video', array('status' => 'deleted', 'time_deleted' => time()), 'id='.$video['id']);
+				//First check if video is reported as deleted
+				$path = $this->__getDeletedSubdir($video['filename']);
+				if(file_exists($path.$video['filename'])) {
+					$this->shell->Node->Video->id = $video['id'];
+					$this->shell->Node->Video->saveField('status', 'deleted');
 					continue;
-				}*/
+				}
 				//Update only if the jsonfile has changed
 				$videoFile = $video['path'] . $video['filename'];
 				if($video['file_md5'] != md5_file($videoFile)) {
@@ -173,11 +175,43 @@ class PornhubMrss  {
 					$this->shell->Node->saveNode($videoData, 'video');
 				}
 			}
+			
 			//Sets last video id checked for updates
 			$this->shell->Node->Video->Site->id = $this->settings['Site']['id'];
 			$this->shell->Node->Video->Site->saveField('last_updated_videoid',  $video['id']);
 		}
     }
+	
+	/*
+	 * Stores deleted files in file system
+	 * cake mrss run Pornhub storeDeletedFS
+	 */
+	public function storeDeletedFS() {	
+		$mrssPartName = $this->settings['deletedPartsFolder'].$this->settings['partPrefix'].sprintf("%02d", $this->settings['Site']['next_deleted_to_parse']);
+		$this->shell->Node->Video->Site->id = $this->settings['Site']['id'];
+		
+		if(file_exists($mrssPartName)) {
+			$mrss = new MrssParser($mrssPartName);
+			foreach($mrss as $key => $item) {
+				$deletedFileName = md5($item['url']);
+				$path = $this->__getDeletedSubdir($deletedFileName);
+				
+				if(!file_exists($path.$deletedFileName)) {
+					new Folder($path, true, 0775);
+					touch($path.$deletedFileName);
+				}				
+			}
+			
+			$this->shell->Node->Video->Site->saveField('next_deleted_to_parse',  $this->settings['Site']['next_deleted_to_parse'] + 1);
+		} else {
+			$this->shell->Node->Video->Site->saveField('next_deleted_to_parse',  0);
+		}		
+		
+	}
+	
+	private function __getDeletedSubdir($filename) {		
+		return $this->settings['deletedFolderItems'] . substr($filename, 0,2) . '/' . substr($filename, 2,1) . '/';
+	}
 	
 	private function __meetsCondition(&$item) {		
 		
