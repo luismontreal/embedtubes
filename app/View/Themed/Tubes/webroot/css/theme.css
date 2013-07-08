@@ -19,7 +19,7 @@ blockquote { margin: 20px 0px 20px 0px; padding: 20px 50px 20px 50px; }
 blockquote p { font-size: 16px; font-style: italic; }
 blockquote p cite { text-align: right; display: block; }
 
-div.paging { text-align: center; margin: 30px; }
+div.paging { text-align: center; margin: 30px; clear:both }
 
 #wrapper { border-top: 10px solid #444; }
 
@@ -92,7 +92,7 @@ ul.sf-menu li li li.sfHover ul { left:10em; top:0; }
  */
 .message { border: 2px dashed #eee; padding: 10px; margin: 0px 0px 10px 0px; }
 
-.nodes .node h2 { font-size: 26px; }
+.nodes .node h2 { font-size: 12px; }
 
 .node { margin: 0px 0px 50px 0px; }
 .node h2 a { text-decoration: none; display: block; }
@@ -106,7 +106,7 @@ ul.sf-menu li li li.sfHover ul { left:10em; top:0; }
 .node .node-body ol { margin: 10px; }
 .node .node-body ul li { list-style-type: disc; margin: 0px 0px 0px 25px; }
 .node .node-body ol li { list-style-type: decimal; margin: 0px 0px 0px 25px; }
- node node-type-video {}
+.node-type-video {float:left; width:170px}
  
 .comments h3 { margin: 50px 0px 10px 0px; }
 .comments .comment { border-top: 1px solid #f7f7f7; }
@@ -144,4 +144,6 @@ ul.sf-menu li li li.sfHover ul { left:10em; top:0; }
 
 #debug-kit-toolbar ul li.panel-tab { display: none; }
 #debug-kit-toolbar ul li.icon { display: inline; }
+
+.crop {width:160px;overflow:hidden;height:10px;line-height:10px;}​
 

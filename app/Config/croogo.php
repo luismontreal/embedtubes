@@ -32,7 +32,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-Configure::write('debug', 0);
+Configure::write('debug', 2);
 
 /**
  * Configure the Error handler used to handle errors for your application.  By default
@@ -116,7 +116,7 @@ Configure::write('Routing.prefixes', array('admin'));
  * Turn off all caching application-wide.
  *
  */
-Configure::write('Cache.disable', false);
+Configure::write('Cache.disable', true);
 
 /**
  * Enable cache checking.
@@ -173,7 +173,7 @@ define('LOG_ERROR', LOG_ERR);
  *
  */
 Configure::write('Session', array(
-	'defaults' => 'cache',
+	'defaults' => 'php',
 	'ini' => array(
 		'session.cookie_httponly' => 1
 	)
