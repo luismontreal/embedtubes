@@ -47,30 +47,22 @@
 		</div>
 
 		<div id="main" class="container_16">
-			<div id="content" class="grid_11">
+			<div id="content" class="grid_16">
 			<?php
 				echo $this->Layout->sessionFlash();
 				echo $content_for_layout;
 			?>
 			</div>
 
-			<div id="sidebar" class="grid_5">
-			<?php echo $this->Regions->blocks('right'); ?>
-			</div>
+			<!--div id="sidebar" class="grid_5">
+			<?php //echo $this->Regions->blocks('right'); ?>
+			</div-->
 
 			<div class="clear"></div>
 		</div>
 
 		<div id="footer">
-			<div class="container_16">
-				<div class="grid_8 left">
-					Powered by <a href="http://www.croogo.org">Croogo</a>.
-				</div>
-				<div class="grid_8 right">
-					<a href="http://www.cakephp.org"><?php echo $this->Html->image('/img/cake.power.gif'); ?></a>
-				</div>
-				<div class="clear"></div>
-			</div>
+			&nbsp;
 		</div>
 	</div>
 	<?php

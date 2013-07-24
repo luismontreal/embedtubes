@@ -106,7 +106,7 @@ ul.sf-menu li li li.sfHover ul { left:10em; top:0; }
 .node .node-body ol { margin: 10px; }
 .node .node-body ul li { list-style-type: disc; margin: 0px 0px 0px 25px; }
 .node .node-body ol li { list-style-type: decimal; margin: 0px 0px 0px 25px; }
-.node-type-video {float:left; width:170px}
+.node-type-video-index {float:left; width:170px}
  
 .comments h3 { margin: 50px 0px 10px 0px; }
 .comments .comment { border-top: 1px solid #f7f7f7; }
@@ -134,7 +134,7 @@ ul.sf-menu li li li.sfHover ul { left:10em; top:0; }
 .block ul li { list-style-type: disc; margin: 0px 0px 0px 25px; }
 
 .block-search input[type=text] { width: 200px; float: left; margin: 2px; }
-
+.video_thumb { width:160px;height: 120px;}
 
 /**
  * Footer

@@ -5,13 +5,13 @@
         "feed_url": "",
         "locale": "eng",
         "status": 1,
-        "tagline": "A Site to test this CMS.",
+        "tagline": "Homenaje a los Grandes!",
         "theme": "Tubes",
         "timezone": 0,
-        "title": "EmbedTubes"
+        "title": "ElmaCanon"
     },
     "Hook": {
-        "bootstraps": "Settings,Comments,Contacts,Nodes,Meta,Menus,Users,Blocks,Taxonomy,FileManager,Wysiwyg,Ckeditor,Debugkit,Tubes,Translate,DebugKit"
+        "bootstraps": "Settings,Comments,Contacts,Nodes,Meta,Menus,Users,Blocks,Taxonomy,FileManager,Wysiwyg,Ckeditor,Debugkit,DebugKit,Tubes"
     },
     "Access Control": {
         "autoLoginDuration": "+1 week",

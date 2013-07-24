@@ -10,9 +10,13 @@
 			$this->Nodes->set($node);
 			$thumb = $this->Nodes->node['Video']['thumb_path'];
 	?>
-	<div id="node-<?php echo $this->Nodes->field('id'); ?>" class="node node-type-<?php echo $this->Nodes->field('type'); ?>">
-		<img src="<?=$thumb?>" alt="" />
-		<h2 class="crop"><?php echo $this->Html->link($this->Nodes->field('title'), $this->Nodes->field('url')); ?></h2>
+	<div id="node-<?php echo $this->Nodes->field('id'); ?>" class="node node-type-<?php echo $this->Nodes->field('type'); ?>-index">
+		
+			<?php echo $this->Html->link(
+				$this->Html->image($thumb, array('alt' => $this->Nodes->field('title'), 'class' => 'video_thumb'))
+				. '<h2 class="crop">' . $this->Nodes->field('title') . '</h2>',
+				$this->Nodes->field('url'), 
+				array('escape' => false)); ?>
 		<?php
 			//echo $this->Nodes->info();
 			//echo $this->Nodes->body();

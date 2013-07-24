@@ -32,7 +32,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-Configure::write('debug', 2);
+Configure::write('debug', 0);
 
 /**
  * Configure the Error handler used to handle errors for your application.  By default
@@ -116,7 +116,11 @@ Configure::write('Routing.prefixes', array('admin'));
  * Turn off all caching application-wide.
  *
  */
-Configure::write('Cache.disable', true);
+Configure::write('Cache.disable', false);
+if(php_sapi_name() == 'cli' || isset($_GET['neverUseTheFuckCache'])) {
+	Configure::write('Cache.disable', true);
+}
+
 
 /**
  * Enable cache checking.
@@ -296,15 +300,15 @@ Configure::write('Acl.database', 'default');
  *
  */
 $engine = 'Apc';
-//Configure::write('Cache.defaultEngine', $engine);
-Configure::write('Cache.defaultEngine', 'Memcache');
+Configure::write('Cache.defaultEngine', $engine);
+//Configure::write('Cache.defaultEngine', 'Memcache');
 if (extension_loaded('apc') && (php_sapi_name() !== 'cli' || ini_get('apc.enable_cli'))) {
 	$engine = 'Apc';
 }
 
 // In development mode, caches should expire quickly.
 $duration = '+999 days';
-if (Configure::read('debug') >= 1) {
+if (Configure::read('debug') >= 1 || isset($_GET['neverUseTheFuckCache'])) {
 	$duration = '+1 seconds';
 }
 

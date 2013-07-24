@@ -61,10 +61,23 @@ class PornhubMrss  {
      * cake mrss run Pornhub storeFS
     */
     public function storeFS() {
+		ini_set('memory_limit', '65536M');
+		
 		//@TODO Use cakephp instead of shell_exec
-		$numberOfParts = shell_exec('ls -lR '.$this->settings['partsFolder'].$this->settings['partPrefix'].'* | grep ^- | wc -l');			
-		$partsToParse = 3; //@TODO must come from the DB
-		$partsToParseLimit = 0; //@TODO must come from the DB
+		$numberOfParts = shell_exec('ls -lR '.$this->settings['partsFolder'].$this->settings['partPrefix'].'* | grep ^- | wc -l');
+		//debug($this->settings);exit;
+		$partsToParse = $this->settings['Site']['last_mrss_part_parsed'];
+		$partsToParseLimit = $this->settings['Site']['last_mrss_part_parsed'] -1;
+		
+		//check if the last mrss part to parse has reach the limit
+		if($partsToParseLimit < 0 ) {
+			$partsToParseLimit = 0;
+		}
+		//Get the next mrss part to start with
+		$next_mrss_parts_to_parse_from = $partsToParseLimit;
+		if($next_mrss_parts_to_parse_from <= 0) {
+			$next_mrss_parts_to_parse_from = $numberOfParts;
+		}
 		
 		for($partsToParse; $partsToParse > $partsToParseLimit; $partsToParse--) {
 			$mrssPartName = $this->settings['partPrefix'].sprintf("%02d", $numberOfParts - $partsToParse);				
@@ -90,6 +103,9 @@ class PornhubMrss  {
 				}			
 			}
 		}
+		
+		$this->shell->Node->Video->Site->id = $this->settings['Site']['id'];
+		$this->shell->Node->Video->Site->saveField('last_mrss_part_parsed', $next_mrss_parts_to_parse_from);
     }
 	
     /*
@@ -98,34 +114,50 @@ class PornhubMrss  {
     */
     public function storeDB() {
 		$maxInserts = $this->settings['Site']['max_video_insert'];
-		$from = $this->settings['Site']['days_from'];
-		$to = $this->settings['Site']['days_to'];
+		$readAttemps = 100;
+		$folderToRead = empty($this->settings['Site']['last_video_folder_inserted']) ? '2007/10/16' : $this->settings['Site']['last_video_folder_inserted'];
 		
-		//start reading from $from-$to days ago		
-		$foldersToRead = $this->__getFoldersToRead($from, $to);
-		
-		foreach ($foldersToRead as $folder) {
-			$filesToRead = $this->__getFilesToRead($folder);
-			
+		while ($readAttemps > 0) {
+			$readAttemps --;			
+			$filesToRead = $this->__getFilesToRead( $this->settings['storageFolder'].$folderToRead);
+					
 			foreach($filesToRead as $fileName) {
-				$videoFile = $folder.$fileName;
-				$videoData = json_decode(file_get_contents($videoFile), TRUE);
+				$videoFile = $this->settings['storageFolder'].$folderToRead.DS.$fileName;
+				$videoData = json_decode(file_get_contents($videoFile), TRUE);		
 				
 				$videoExists = $this->shell->Node->Video->findByUrl($videoData['Video']['url']);
-				
 				if(empty($videoExists)) {
 					$videoData['Video']['file_md5'] = md5_file($videoData['Video']['path'].$videoData['Video']['filename']);
 					$this->shell->Node->create();
 					$this->shell->Node->saveNode($videoData, 'video');
 					$maxInserts--;
-				}																
-		
-				if($maxInserts == 0) {
-					return TRUE;
-				}
+					
+					if($maxInserts <= 0) {
+						$this->shell->Node->Video->Site->id = $this->settings['Site']['id'];
+						$this->shell->Node->Video->Site->saveField('last_video_folder_inserted', $folderToRead);
+						return TRUE;
+					}
+				} else {
+					//Check if video json file has changed location due to a re-release in PH			
+					if($videoExists['Video']['path'] != $videoData['Video']['path']) {
+						$this->shell->Node->Video->id = $videoExists['Video']['id'];
+						$this->shell->Node->Video->saveField('path', $videoData['Video']['path']);
+					}
+				}		
 			}
 			
+			//do not let the script to get to today's folder
+			$today = date('Y/m/d', time());
+			$nextDay = date('Y/m/d', strtotime($folderToRead . ' + 1 day'));
+			if ($today != $nextDay) {
+				$folderToRead = date('Y/m/d', strtotime($folderToRead . ' + 1 day'));
+			} else {
+				break;
+			}
 		}
+		$this->shell->Node->Video->Site->id = $this->settings['Site']['id'];
+		$this->shell->Node->Video->Site->saveField('last_video_folder_inserted', $folderToRead);
+			
 		return TRUE;
     }
 	
@@ -217,10 +249,11 @@ class PornhubMrss  {
 		
 		if (empty($item["media:title"]["$"]) ||
 				$item["phn:video_spam"] == 1 ||
-				$item["phn:community"] == 0 ||
+				//$item["phn:community"] == 0 ||
 				empty($item["media:category"]) ||
-				empty($item["media:keywords"]) ||				
-				($item["bing:ratings"]["@average"] < 0.8)
+				empty($item["media:keywords"]) ||
+				(preg_match('/\b(' . 'big-dick|bigdick|big dick' . ')\b/i', $item["media:category"]) != 1 && preg_match('/\b(' . 'big-dick|bigdick|big dick' . ')\b/i', $item["media:keywords"]) != 1 ) ||				
+				($item["bing:ratings"]["@average"] < 0.7)
 		) {
 			return FALSE;
 		}
@@ -314,6 +347,8 @@ class PornhubMrss  {
 				$words = explode(',', $t);
 
 				foreach($words as $w) {
+					if(empty($w)) continue;
+					
 					// Find Term in Model
 					$term = $this->shell->Term->find('first', array(
 						'conditions' => array('Term.slug' => Inflector::slug($w, '-')),
@@ -336,7 +371,7 @@ class PornhubMrss  {
 					}
 
 					//Prepare taxonomies array
-					$taxonomies[$vid][] = $tid;					
+					if($tid != false) $taxonomies[$vid][] = $tid;					
 				}				
 			}
 		}
@@ -352,7 +387,7 @@ class PornhubMrss  {
 		
 		$termId = $this->shell->Term->saveAndGetId($data);				
 		
-		$this->__addTermToVocabulary($termId, $vid);
+		if($termId != false) $this->__addTermToVocabulary($termId, $vid);
 		
 		return $termId;
 	}
