@@ -269,14 +269,20 @@ class PornhubMrss  {
 		$isMobileCompatible = isset($item["phn:mobile"]) ? $item["phn:mobile"] : 0;
 		$titleSlug = strtolower(Inflector::slug($item["media:title"]["$"], '-'));
 		$n_favorites = isset($item["phn:favorite_count"]) ? $item["phn:favorite_count"] : 0;
+		
+		if(is_array($item["media:thumbnail"])) {
+			$item["media:thumbnail"] = current($item["media:thumbnail"]);
+		}
+		
 		$thumbInfo = pathinfo($item["media:thumbnail"]["@url"]);
+		
 		$embedLink = parse_url($item["link"]);		
 		// we get $viewkey from this following line
 		parse_str($embedLink['query']);								
 		
 		if(preg_match('/\b(' . 'gay' . ')\b/i', $item["media:category"]) == 1) {
 			$segment = 'gay';
-		} elseif (preg_match('/\b(' . 'tranny|transexual' . ')\b/i', $item["media:category"]) == 1) {
+		} elseif (preg_match('/\b(' . 'tranny|transexual|shemale' . ')\b/i', $item["media:category"]) == 1) {
 			$segment = 'transexual';
 		} else {
 			$segment = 'straight';
