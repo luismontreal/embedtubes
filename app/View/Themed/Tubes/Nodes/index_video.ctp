@@ -8,12 +8,14 @@
 	<?php
 		foreach ($nodes as $node):			
 			$this->Nodes->set($node);
-			$thumb = $this->Nodes->node['Video']['thumb_path'];
+			//setting the original to medium size
+			$thumb = preg_replace('|160x120|', '240x180', $this->Nodes->node['Video']['thumb_path']);
+			
 	?>
 	<div id="node-<?php echo $this->Nodes->field('id'); ?>" class="node node-type-<?php echo $this->Nodes->field('type'); ?>-index">
 		
 			<?php echo $this->Html->link(
-				$this->Html->image($thumb, array('alt' => $this->Nodes->field('title'), 'class' => 'video_thumb'))
+				$this->Html->image($thumb, array('alt' => $this->Nodes->field('title'), 'class' => 'video_thumb_medium'))
 				. '<h2 class="crop">' . $this->Nodes->field('title') . '</h2>',
 				$this->Nodes->field('url'), 
 				array('escape' => false)); ?>

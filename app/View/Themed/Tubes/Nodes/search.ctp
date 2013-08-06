@@ -9,8 +9,7 @@
 
 	<?php
 		foreach ($nodes as $node):
-			$this->Nodes->set($node);
-			
+			$this->Nodes->set($node);			
 			$thumb = $this->Nodes->node['Video']['thumb_path'];
 			
 	?>
@@ -18,7 +17,7 @@
 		<h2><?php echo $this->Html->link($this->Nodes->field('title'), $this->Nodes->field('url')); ?></h2>
 		<?php
 			echo $this->Html->link(
-				$this->Html->image($thumb, array('alt' => $this->Nodes->field('title'), 'class' => 'video_thumb'))
+				$this->Html->image($thumb, array('alt' => $this->Nodes->field('title'), 'class' => 'video_thumb_small'))
 				. '<h2 class="crop">' . $this->Nodes->field('title') . '</h2>',
 				$this->Nodes->field('url'), 
 				array('escape' => false));
