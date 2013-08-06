@@ -33,10 +33,11 @@
 </head>
 <body>
 	<div id="wrapper">
-		<div id="header" class="container_16">
+		<div id="header" class="container_16">			
 			<div class="grid_16">
 				<h1 class="site-title"><?php echo $this->Html->link(Configure::read('Site.title'), '/'); ?></h1>
 				<span class="site-tagline"><?php echo Configure::read('Site.tagline'); ?></span>
+				<?php echo $this->Regions->blocks('header'); ?>
 			</div>			
 		</div>
 

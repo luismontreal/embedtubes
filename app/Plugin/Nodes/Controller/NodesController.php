@@ -574,7 +574,7 @@ class NodesController extends NodesAppController {
  * @return void
  * @access public
  */
-	public function search($typeAlias = null) {
+	public function search($typeAlias = 'video') {
 		if (!isset($this->request->params['named']['q'])) {
 			$this->redirect('/');
 		}
@@ -609,7 +609,7 @@ class NodesController extends NodesAppController {
 				'Vocabulary',
 			),
 			'User',
-		);
+		);		
 		if ($typeAlias) {
 			$type = $this->Node->Taxonomy->Vocabulary->Type->findByAlias($typeAlias);
 			if (!isset($type['Type']['id'])) {
