@@ -307,7 +307,7 @@ class PornhubMrss  {
 				'excerpt' => '',
 				'body' => '',
 				'comment_status' => '2',
-				'status' => '1',
+				'status' => '0',
 				'promote' => '0',
 				'user_id' => '1',
 				'created' => ''
