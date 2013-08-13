@@ -252,7 +252,7 @@ class PornhubMrss  {
 				//$item["phn:community"] == 0 ||
 				empty($item["media:category"]) ||
 				empty($item["media:keywords"]) ||
-				(preg_match('/\b(' . 'big-dick|bigdick|big dick' . ')\b/i', $item["media:category"]) != 1 && preg_match('/\b(' . 'big-dick|bigdick|big dick' . ')\b/i', $item["media:keywords"]) != 1 ) ||				
+				(preg_match('/\b(' . 'dick|big-dick|bigdick|big dick' . ')\b/i', $item["media:category"]) != 1 && preg_match('/\b(' . 'dick|big-dick|bigdick|big dick' . ')\b/i', $item["media:keywords"]) != 1 ) ||				
 				($item["bing:ratings"]["@average"] < 0.7)
 		) {
 			return FALSE;
